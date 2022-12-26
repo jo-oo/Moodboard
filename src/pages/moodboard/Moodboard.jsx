@@ -2,7 +2,7 @@ import "./moodboard.scss";
 
 const Moodboard = () => {
     return (
-        <div>
+        <div className="Container">
             <h1>Moodboard</h1>
             <div>
                 <p>
