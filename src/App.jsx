@@ -1,18 +1,16 @@
+import { Routes, Route } from 'react-router-dom'
 import './App.scss'
+
+// * Pages * // 
+import Moodboard from './pages/moodboard/Moodboard'
 
 function App() {
 
   return (
     <div id="App">
-      <h1>Moodboard</h1>
-      <div>
-        <p>
-          let´s create a lovely moodboard
-        </p>
-      </div>
-      <p>
-        Stay tuned...
-      </p>
+      	<Routes>
+			<Route path="/" element={<Moodboard />} />
+		</Routes>
     </div>
   )
 }
