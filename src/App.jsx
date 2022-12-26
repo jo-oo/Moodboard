@@ -3,14 +3,14 @@ import './App.scss'
 function App() {
 
   return (
-    <div className="App">
+    <div id="App">
       <h1>Moodboard</h1>
-      <div className="card">
+      <div>
         <p>
           let´s create a lovely moodboard
         </p>
       </div>
-      <p className="body-text">
+      <p>
         Stay tuned...
       </p>
     </div>
