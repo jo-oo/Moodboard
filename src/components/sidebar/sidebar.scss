@@ -1,0 +1,8 @@
+.Sidebar {
+    background-color: rgb(210, 187, 187);
+    display: grid;
+    grid-template-columns: 250px;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 2em;   
+}
