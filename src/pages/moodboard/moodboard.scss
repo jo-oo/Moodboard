@@ -1,16 +1,11 @@
-body {
+.Moodboard {
     display: flex;
-    place-items: center;
-    justify-content: center;
-    background-color: rgb(230, 238, 238);
-}
-
-.Container {
-    background-color: #bdbfe1;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+    justify-content: space-between;
+    background-color: rgb(228, 161, 242);
 }
   
-  
+.MainMoodboard {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(230, 219, 232);
+}
