@@ -10,12 +10,9 @@ const Moodboard = () => {
             <h1>Moodboard</h1>
             <div>
                 <p>
-                    let´s create a lovely moodboard
+                    Let´s gather all your inspiration
                 </p>
             </div>
-            <p>
-                Stay tuned...
-            </p>
         </div>
     )
 }
