@@ -10,9 +10,10 @@ const Sidebar = () => {
                     <img src={logo} className="Logo" alt="Sideboard Logo"/>
                 </div>
             </div>
-            <h1>Sidebar</h1>
             <h2>Plus</h2>
-            <CategoryList/>
+            <div className="Bottom">
+                <CategoryList/>
+            </div>
         </div>
     )
 }
