@@ -10,8 +10,7 @@ const Sidebar = () => {
                     <img src={logo} className="Logo" alt="Sideboard Logo"/>
                 </div>
             </div>
-            <h2>Plus</h2>
-            <div className="Bottom">
+            <div classNamse="Bottom">
                 <CategoryList/>
             </div>
         </div>

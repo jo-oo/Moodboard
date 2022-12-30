@@ -7,6 +7,9 @@ const Cards = ({ categoryList }) => {
 
     return (
         <div className="CardsBox"> 
+            <div className="Cards">
+                PLUS
+            </div>
             {list.map((category, i) => {
                 return (
                     <div key={i} className="Cards">
