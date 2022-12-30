@@ -1,8 +1,19 @@
 .Sidebar {
     background-color: rgb(210, 187, 187);
     display: grid;
-    grid-template-columns: 250px;
+    grid-template-columns: 182px;
     min-height: 100vh;
     overflow-y: scroll;
-    padding: 2em;   
+    padding: 3em 2em 2em 2em;   
+
+    .Top {
+        background-color: rgb(199, 199, 217);
+       text-align: center;
+
+        .Logo {
+            width: 92px;
+        }
+    }
+
+
 }
