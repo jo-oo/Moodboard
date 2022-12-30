@@ -1,14 +1,18 @@
 import "./cards.scss";
 import Card from "./Card";
+import { HiOutlinePlus } from 'react-icons/hi';
+import { FiPlus } from 'react-icons/fi';
+import { TiPlus } from 'react-icons/ti';
 
 const Cards = ({ categoryList }) => {
 
     const list = categoryList;
 
-    return (
+    return ( 
         <div className="CardsBox"> 
             <div className="Cards">
-                PLUS
+                {/* <HiOutlinePlus size={40}/> */}
+                <FiPlus size={45}/>
             </div>
             {list.map((category, i) => {
                 return (
