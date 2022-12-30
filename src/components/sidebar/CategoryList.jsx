@@ -16,7 +16,6 @@ const CategoryList = () => {
         },
         {
             heading: "Category 4",
-        
         },
         {
             heading: "Category 5",
