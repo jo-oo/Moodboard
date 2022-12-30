@@ -1,3 +1,5 @@
+import Cards from "./Cards";
+
 const CategoryList = () => {
 
     const categoryList = [
@@ -24,13 +26,8 @@ const CategoryList = () => {
     return (
         <div>
             <h2>CategoryList</h2>
-            {categoryList.map((category, i) => {
-                return (
-                    <div key={i}>
-                        <p>{category.heading}</p>
-                    </div>
-                );
-            })}
+            {/* send list to Cards component */}
+            <Cards categoryList={categoryList} />
         </div>
     )
 }
