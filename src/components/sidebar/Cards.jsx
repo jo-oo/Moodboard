@@ -1,4 +1,5 @@
 import "./cards.scss";
+import Card from "./Card";
 
 const Cards = ({ categoryList }) => {
 
@@ -9,7 +10,8 @@ const Cards = ({ categoryList }) => {
             {list.map((category, i) => {
                 return (
                     <div key={i}>
-                        <p>{category.heading}</p>
+                        {/* send rendering of each category to a Card component. Send category data there */}
+                        <Card category={category} nr={i}/>
                     </div>
                 );
             })}
