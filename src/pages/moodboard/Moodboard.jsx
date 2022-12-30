@@ -1,6 +1,7 @@
 import "./moodboard.scss";
 import logo from '../../assets/logos/logo.svg'
 import Sidebar from "../../components/sidebar/Sidebar";
+import Notes from "../../components/notes/Notes";
 
 const Moodboard = () => {
     return (
@@ -21,7 +22,7 @@ const Moodboard = () => {
                         </div>
                     </div>
                     <div className="Right">
-                        <h2>Notes</h2>
+                        <Notes/>
                     </div>
                 </div>
             </div>

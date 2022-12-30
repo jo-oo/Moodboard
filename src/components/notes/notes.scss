@@ -1,0 +1,15 @@
+.NotesContainer {
+    background-color: rgb(168, 111, 40);
+    display: grid;
+    grid-template-columns: 240px;
+    min-height: 100vh;
+    padding: 2em;   
+}
+
+.Notepad {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 205px;
+    min-height: 100vh;
+    padding: 2em;   
+}
