@@ -12,10 +12,6 @@ const Moodboard = () => {
                 <Sidebar/>
                 <div className="MainMoodboard">
                     <div className="Middle">
-                        <h1>Moodboard</h1>
-                        <div>
-                            <img src={logo} className="Logo" alt="Moodboard Logo"/>
-                        </div>
                     </div>
                     <div className="Right">
                         <div>
