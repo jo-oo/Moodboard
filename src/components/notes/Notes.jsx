@@ -5,6 +5,7 @@ const Notes = () => {
     <div className="NotesContainer">
         <div className="Notepad">
             Notes
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
         </div>
     </div>
   )

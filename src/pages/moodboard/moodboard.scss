@@ -1,11 +1,17 @@
+.Container{
+    display: grid;
+    background-color: rgb(228, 161, 242);
+}
+
 .Moodboard {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
     justify-content: space-between;
     background-color: rgb(228, 161, 242);
 }
   
 .MainMoodboard {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 11fr 1fr;
     background-color: rgb(230, 219, 232);
 }

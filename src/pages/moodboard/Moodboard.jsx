@@ -2,6 +2,7 @@ import "./moodboard.scss";
 import logo from '../../assets/logos/logo.svg'
 import Sidebar from "../../components/sidebar/Sidebar";
 import Notes from "../../components/notes/Notes";
+import { FiPlus } from 'react-icons/fi';
 
 const Moodboard = () => {
     return (
@@ -10,11 +11,6 @@ const Moodboard = () => {
             <div className="Moodboard">
                 <Sidebar/>
                 <div className="MainMoodboard">
-                    <div className="Left">
-                        <div>
-                            <h2>PLUS</h2>
-                        </div>  
-                    </div>
                     <div className="Middle">
                         <h1>Moodboard</h1>
                         <div>
@@ -22,9 +18,12 @@ const Moodboard = () => {
                         </div>
                     </div>
                     <div className="Right">
-                        <Notes/>
+                        <div>
+                        <FiPlus size={45}/>
+                        </div>  
                     </div>
                 </div>
+                <Notes/>
             </div>
 
         </div>
