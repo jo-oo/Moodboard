@@ -1,6 +1,8 @@
 .Container{
     display: grid;
     background-color: rgb(228, 161, 242);
+    min-width: 100vw;
+    min-height: 100vh;
 }
 
 .Moodboard {
