@@ -1,18 +1,18 @@
 .CardsBox {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 50px;
     align-items: center;
     background-color: antiquewhite;
 }
 
 .Cards {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     align-items: center;
     justify-content: center;
-    width: 104px;
+    //width: 104px;
     height: 78px;
     border-radius: 12px;
+
     background-color: #605860;
 }
-
