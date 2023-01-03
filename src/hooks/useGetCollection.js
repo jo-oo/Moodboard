@@ -1,9 +1,10 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 //db instance from firebase config file:
 import { db } from '../../firebase/config'
 
 const useGetCollection = () => {
+    const [data, setData] = useState([])
 
     useEffect(() => {
 		const getSnapshot = async () => {
@@ -11,13 +12,22 @@ const useGetCollection = () => {
 			const ref = collection(db, 'images')
 			const snapshot = await getDocs(ref)
 
+            const data = snapshot.docs.map(doc => {
+				return {
+					id: doc.id,
+					...doc.data(),
+				}
+			})
+
+			setData(data)
+
 			console.log("here is the snapshot of the collection 'images' ", snapshot)
 		}
 		getSnapshot()
 	}, [])
 
     return (
-        <div>useGetCollection</div>
+        data
     )
 }
 
