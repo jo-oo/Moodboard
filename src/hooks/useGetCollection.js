@@ -5,6 +5,7 @@ import { db } from '../../firebase/config'
 
 const useGetCollection = () => {
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
 		const getSnapshot = async () => {
@@ -20,6 +21,7 @@ const useGetCollection = () => {
 			})
 
 			setData(data)
+            setLoading(false)
 
 			console.log("here is the snapshot of the collection 'images' ", snapshot)
 		}
@@ -27,7 +29,8 @@ const useGetCollection = () => {
 	}, [])
 
     return (
-        data
+        data,
+        loading
     )
 }
 
