@@ -3,12 +3,13 @@ import { collection, getDocs } from 'firebase/firestore'
 //db instance from firebase config file:
 import { db } from '../../firebase/config'
 
-const useGetCollection = () => {
+const useGetImages = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
 		const getSnapshot = async () => {
+			setLoading(true)
 			// get reference to collection 'images'
 			const ref = collection(db, 'images')
 			const snapshot = await getDocs(ref)
@@ -34,4 +35,4 @@ const useGetCollection = () => {
     )
 }
 
-export default useGetCollection
+export default useGetImages
