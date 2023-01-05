@@ -1,7 +1,7 @@
-import useGetCollection from "./useGetCollection"
+import useStreamCollection from "./useStreamCollection"
 
 const useGetImages = () => {
-	return useGetCollection('images')
+	return useStreamCollection('images')
 }
 
 export default useGetImages
