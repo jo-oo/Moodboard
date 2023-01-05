@@ -1,7 +1,7 @@
-import useGetDocument from "./useGetDocument"
+import useStreamDocument from "./useStreamDocument"
 
 const useGetImage = (id) => {
-	return useGetDocument('images', id)
+	return useStreamDocument('images', id)
 }
 
 export default useGetImage
