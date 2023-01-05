@@ -4,6 +4,7 @@ import './App.scss'
 // * Pages * // 
 import Moodboard from './pages/moodboard/Moodboard'
 import NotFound from './pages/NotFound'
+import ImagePage from './pages/ImagePage'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       	<Routes>
 			<Route path="/" element={<Moodboard />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/images/:id" element={<ImagePage />} />
 		</Routes>
     </div>
   )
