@@ -4,7 +4,6 @@ import Notes from "../../components/notes/Notes";
 import { FiPlus } from 'react-icons/fi';
 import useGetImages from "../../hooks/useGetImages";
 
-
 const Moodboard = () => {
     const { data: images, loading } = useGetImages()
 
@@ -15,13 +14,14 @@ const Moodboard = () => {
                 <Sidebar/>
                 <div className="MainMoodboard">
                     <div className="Middle">
+
+                        {/*WHEN USING GetImages() which uses useStreamCollection*/}
                         {loading && (<p>Loading..</p>) }
                         <div>
                             {!loading && 
                             images.map((image, index) => (
                                 <div key={index}>
-                                    <p>{image.name} "type:" {image.type} "path:" {image.path} </p>
-                                    
+                                    <p>{image.name} "type:" {image.type} "path:" {image.path} </p> 
                                 </div>
                             ))}
                         </div>
