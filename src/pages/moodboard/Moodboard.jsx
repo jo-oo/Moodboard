@@ -15,6 +15,14 @@ const Moodboard = () => {
                 <div className="MainMoodboard">
                     <div className="Middle">
 
+                        {/*Tailwind test*/}
+                        <div className="bg-blue-300">
+                            TAILWIND
+                        </div>
+                        <h1 className="text-3xl underline">
+      Hello world!
+    </h1>
+
                         {/*WHEN USING GetImages() which uses useStreamCollection*/}
                         {loading && (<p>Loading..</p>) }
                         <div>
