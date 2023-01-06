@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import './App.scss'
+//import './App.scss'
+import './index.css'
 
 // * Pages * // 
 import Moodboard from './pages/moodboard/Moodboard'
