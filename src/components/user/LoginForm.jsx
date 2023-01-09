@@ -1,7 +1,35 @@
 import logo from '../../assets/logos/logo.svg'
 import Button from './Button.jsx'
+import Alert from '../../components/general/Alert'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useRef, useState } from 'react'
+import { useAuthContext } from '../../contexts/AuthContext'
 
 const LoginForm = () => {
+
+	const emailRef = useRef()
+	const passwordRef = useRef()
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
+	const { login } = useAuthContext()
+	const navigate = useNavigate()
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		setError(null);
+
+		// try to log in the user with the specified credentials
+		try {
+			setLoading(true)
+			await login(emailRef.current.value, passwordRef.current.value)
+			navigate('/')
+
+		} catch (err) {
+			setError(err.message)
+			setLoading(false)
+		}
+	}
+    
     return (
         <div>
 
@@ -19,7 +47,13 @@ const LoginForm = () => {
                         <p className='text-base'>Please enter your details</p>
                     </div>
 
-                    <form>
+                    {error && (
+                        //send error to Alert component
+                        <Alert error={error} />
+                    )}
+
+                    <form onSubmit={handleSubmit}>
+
                         <div className="mt-4">
                             <label
                                 htmlFor="email"
@@ -30,6 +64,7 @@ const LoginForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="email"
+                                    ref={emailRef} required
                                     name="email"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -38,6 +73,7 @@ const LoginForm = () => {
                                 />
                             </div>
                         </div>
+                
                         <div className="mt-4">
                             <label
                                 htmlFor="password"
@@ -48,6 +84,7 @@ const LoginForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
+                                    ref={passwordRef} required
                                     name="password"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -56,26 +93,15 @@ const LoginForm = () => {
                                 />
                             </div>
                         </div>
-
+                    
                         <div className="flex items-center justify-end mt-8 mb-2">
-                            <a
-                                className="text-sm text-gray-600 underline hover:text-gray-900"
-                                href="#"
+                            <p
+                                className="text-sm text-gray-600 hover:text-gray-900"
                             >
-                                Forgot password?
-                            </a>
-                            <Button />
-                        </div>
-                        <div className="mt-4">
-
-                            <div className="flex flex-col items-center">
-                            <a
-                                className="text-sm text-gray-600 underline hover:text-gray-900"
-                                href="#"
-                            >
-                                Don´t have an account? Sign up
-                            </a>
-                            </div>
+                                Don´t have an account? 
+                                <Link to="/signup">Sign Up</Link>
+                            </p>
+                            <Button value={`SIGN IN`}/>
                         </div>
                     </form>
                     

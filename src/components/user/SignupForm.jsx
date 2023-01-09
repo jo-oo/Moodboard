@@ -138,12 +138,12 @@ const SignupForm = () => {
                         </div>
                         <div className="flex items-center justify-end mt-8 mb-2">
                             <p
-                                className="text-sm text-gray-600 underline hover:text-gray-900"
+                                className="text-sm text-gray-600 hover:text-gray-900"
                             >
                                 Already registered?
                                 <Link to="/login">Log In</Link>
                             </p>
-                            <Button />
+                            <Button value={`REGISTER`}/>
                         </div>
                     </form>
                     
