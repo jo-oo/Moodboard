@@ -1,6 +1,45 @@
 import logo from '../../assets/logos/logo.svg'
 
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useRef, useState } from 'react'
+import { useAuthContext } from '../../contexts/AuthContext'
+
 const SignupForm = () => {
+
+	const emailRef = useRef()
+	const passwordRef = useRef()
+	const passwordConfirmRef = useRef()
+    const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
+	const { signup } = useAuthContext()
+	const navigate = useNavigate()
+
+
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+
+		//check so that user has entered the same password in both input fields
+		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+			return setError("The passwords does not match")
+		}
+
+		setError(null);
+
+		// try to sign up the user with the specified credentials
+		try {
+			setLoading(true)
+			await signup(emailRef.current.value, passwordRef.current.value)
+
+			// reload user
+			await reloadUser()
+
+			navigate('/')
+		} catch (err) {
+			setError(err.message)
+			setLoading(false)
+		}
+	}
+
     return (
         <div>
 
@@ -18,7 +57,7 @@ const SignupForm = () => {
                         <p className='text-base'>Please enter your details</p>
                     </div>
 
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div>
                             <label
                                 htmlFor="name"
@@ -47,6 +86,7 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="email"
+                                    ref={emailRef} required
                                     name="email"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -65,6 +105,7 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
+                                    ref={passwordConfirmRef} required
                                     name="password"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -83,6 +124,7 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
+                                    ref={passwordRef} required
                                     name="password_confirmation"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -92,12 +134,12 @@ const SignupForm = () => {
                             </div>
                         </div>
                         <div className="flex items-center justify-end mt-8 mb-2">
-                            <a
+                            <p
                                 className="text-sm text-gray-600 underline hover:text-gray-900"
-                                href="#"
                             >
-                                Already registered? Log In
-                            </a>
+                                Already registered?
+                                <Link to="/login">Log In</Link>
+                            </p>
                             <button
                                 type="submit"
                                 className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
