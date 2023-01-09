@@ -1,4 +1,5 @@
 import logo from '../../assets/logos/logo.svg'
+import Button from './Button.jsx'
 
 const LoginForm = () => {
     return (
@@ -63,12 +64,7 @@ const LoginForm = () => {
                             >
                                 Forgot password?
                             </a>
-                            <button
-                                type="submit"
-                                className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
-                            >
-                                Sign In
-                            </button>
+                            <Button />
                         </div>
                         <div className="mt-4">
 

@@ -1,5 +1,5 @@
 import logo from '../../assets/logos/logo.svg'
-
+import Button from './Button.jsx'
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useRef, useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
@@ -95,6 +95,7 @@ const SignupForm = () => {
                                 />
                             </div>
                         </div>
+                        {/* Firebase requires 6 characters password minimum */}
                         <div className="mt-4">
                             <label
                                 htmlFor="password"
@@ -140,12 +141,7 @@ const SignupForm = () => {
                                 Already registered?
                                 <Link to="/login">Log In</Link>
                             </p>
-                            <button
-                                type="submit"
-                                className="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-900 border border-transparent rounded-md active:bg-gray-900 false"
-                            >
-                                Register
-                            </button>
+                            <Button />
                         </div>
                     </form>
                     
