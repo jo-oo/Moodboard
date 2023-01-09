@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { ReactQueryDevtools } from 'react-query/devtools'
 //import './App.scss'
 import './index.css'
 
@@ -22,6 +23,8 @@ function App() {
 			<Route path="/logout" element={<LogoutPage />} />
             <Route path="/images/:id" element={<ImagePage />} />
 		</Routes>
+
+    <ReactQueryDevtools position='bottom-right' />
     </div>
   )
 }
