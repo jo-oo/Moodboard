@@ -31,9 +31,6 @@ const SignupForm = () => {
 			setLoading(true)
 			await signup(emailRef.current.value, passwordRef.current.value)
 
-			// reload user
-			await reloadUser()
-
 			navigate('/')
 		} catch (err) {
 			setError(err.message)
@@ -66,7 +63,6 @@ const SignupForm = () => {
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label
-                                htmlFor="name"
                                 className="block text-sm font-medium text-gray-700"
                             >
                                 Name
@@ -112,7 +108,7 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
-                                    ref={passwordConfirmRef} required
+                                    ref={passwordRef} required
                                     name="password"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -131,7 +127,7 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
-                                    ref={passwordRef} required
+                                    ref={passwordConfirmRef} required
                                     name="password_confirmation"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
