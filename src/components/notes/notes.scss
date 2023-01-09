@@ -1,8 +1,11 @@
 .NotesContainer {
     background-color: rgb(168, 111, 40);
     display: grid;
-    min-height: 100vh;
+    height: 100vh;
     padding: 1em;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
 }
 
 .Notepad {

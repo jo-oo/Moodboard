@@ -2,12 +2,16 @@
     background-color: rgb(210, 187, 187);
     display: grid;
     //grid-template-columns: 182px;
-    min-height: 100vh;
-    padding: 3em 2em 2em 2em;   
+    height: 100vh;
+    padding: 3em 2em 2em 2em;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
 
     .Sidebar {
         background-color: white;
         grid-template-columns: 1fr;
+        
     }
 
     .Top {
