@@ -1,5 +1,5 @@
 import './notes.scss'
-import LogOut from '../user/LogOut'
+import UserProfile from '../user/UserProfile'
 
 
 const Notes = () => {
@@ -12,7 +12,7 @@ const Notes = () => {
                     lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                     lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                 </div>
-                <LogOut />
+                <UserProfile />
             </div>
         </div>
     

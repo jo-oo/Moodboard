@@ -4,7 +4,7 @@ import { BsPersonCircle } from 'react-icons/bs';
 import { useState } from 'react';
 
 
-const LogOut = () => {
+const UserProfile = () => {
     const { currentUser } = useAuthContext()
     const [show, setShow] = useState(false)
 
@@ -57,4 +57,4 @@ const LogOut = () => {
     )
 }
 
-export default LogOut
+export default UserProfile
