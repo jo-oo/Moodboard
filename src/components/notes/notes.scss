@@ -1,5 +1,5 @@
 .RightContainer {
-    height: 100vh;
+ 
 
     .NotesContainer {
         background-color: rgb(168, 111, 40);
@@ -8,13 +8,13 @@
         padding: 3em 1em 4em 1em;
         position: sticky;
         top: 0;
-        overflow-y: auto;
-        
+    
         .Notepad {
             background-color: white;
             grid-template-columns: 1fr;
             padding: 2em;  
-            height: 100vh;
+            max-height: 100vh;
+            overflow-y: auto;
         }
         
         .LogOut {
