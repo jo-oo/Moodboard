@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import RequireAuth from './components/user/RequireAuth'
 //import './App.scss'
 import './index.css'
 
@@ -16,12 +17,28 @@ function App() {
   return (
     <div id="App">
       	<Routes>
-			<Route path="/" element={<Moodboard />} />
+            {/* Guest routes */}
             <Route path="*" element={<NotFound />} />
 			<Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
-			<Route path="/logout" element={<LogoutPage />} />
-            <Route path="/images/:id" element={<ImagePage />} />
+
+            {/* Protected routes */}
+			<Route path="/" element={
+				<RequireAuth>
+					<Moodboard />
+				</RequireAuth>
+			} />
+
+			<Route path="/logout" element={
+				<RequireAuth>
+					<LogoutPage />
+				</RequireAuth>
+			} />
+            <Route path="/images/:id" element={
+				<RequireAuth>
+					<ImagePage />
+				</RequireAuth>
+			} />
 		</Routes>
 
     <ReactQueryDevtools position='bottom-right' />
