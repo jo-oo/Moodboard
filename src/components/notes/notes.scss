@@ -1,6 +1,5 @@
 .RightContainer {
  
-
     .NotesContainer {
         background-color: rgb(168, 111, 40);
         display: grid;
@@ -15,11 +14,6 @@
             padding: 2em;  
             max-height: 100vh;
             overflow-y: auto;
-        }
-        
-        .LogOut {
-            align-self: end;
-            text-align: center;
         }
     }
 }   

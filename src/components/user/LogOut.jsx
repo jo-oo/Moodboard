@@ -1,20 +1,50 @@
 import { useAuthContext } from '../../contexts/AuthContext' //to temporarily dispaly user
 import { Link } from 'react-router-dom'
 import { BsPersonCircle } from 'react-icons/bs';
+import { useState } from 'react';
 
 
 const LogOut = () => {
     const { currentUser } = useAuthContext()
+    const [show, setShow] = useState(false)
+
+    const toggle = () => {
+        setShow(!show);
+      };
     
     return (
-        <div>
+        <div className="self-end text-start">
                 {
 					currentUser ? (
-						<>
-							{/* User is logged in */}
-                            <p>You are logged in as {currentUser.email}!</p>
-							<Link as={Link} to="/logout">Logout</Link>
-                            <BsPersonCircle size={45}/>
+						<>	
+                        
+                            {/* User is logged in */}
+                            <p>You are logged in as {currentUser.email}!</p>  
+
+                            <div className='grid place-items-center'>
+                        
+                             <BsPersonCircle size={40} 
+                                onClick={toggle}/>
+                             
+                                {show ? (
+                                    <>  
+
+                                    <div className='grid grid-cols-3 gap-1'>
+                                    
+                                    <BsPersonCircle size={30} onClick={toggle}/>
+                                        <div className="grid col-span-2">
+                                            <Link as={Link} to="/logout">Logout</Link>
+                                            <Link as={Link} to="/update-profile">Update Profile</Link>
+                                        </div>
+                                        </div>
+                                    </>
+                                    ) : (
+                                        <>
+                                        </>
+                                    )
+                                }
+                            </div>
+
 						</>
 					) : (
 						<>

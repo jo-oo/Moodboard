@@ -12,9 +12,7 @@ const Notes = () => {
                     lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                     lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                 </div>
-                <div className="LogOut">
-                    <LogOut />
-                </div>
+                <LogOut />
             </div>
         </div>
     
