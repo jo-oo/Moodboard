@@ -11,6 +11,7 @@ import ImagePage from './pages/ImagePage'
 import SignupPage from './pages/user/SignupPage'
 import LoginPage from './pages/user/LoginPage'
 import LogoutPage from './pages/user/LogoutPage'
+import ForgotPasswordPage from './pages/user/ForgotPasswordPage'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
 			<Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
+			<Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
             {/* Protected routes */}
 			<Route path="/" element={

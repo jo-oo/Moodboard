@@ -93,6 +93,14 @@ const LoginForm = () => {
                                 />
                             </div>
                         </div>
+
+                        <div className="flex items-center justify-end mt-2 mb-2">
+                            <p
+                                className="text-sm text-gray-600 hover:text-gray-900"
+                            >
+                                <Link to="/forgot-password">Forgot password?</Link>
+                            </p>
+                        </div>
                     
                         <div className="flex items-center justify-end mt-8 mb-2">
                             <p
@@ -101,7 +109,7 @@ const LoginForm = () => {
                                 Don´t have an account? 
                                 <Link to="/signup">Sign Up</Link>
                             </p>
-                            <Button value={`SIGN IN`}/>
+                            <Button disabled={loading} type="submit" value={`SIGN IN`}/>
                         </div>
                     </form>
                     
