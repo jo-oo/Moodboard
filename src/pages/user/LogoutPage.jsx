@@ -16,14 +16,12 @@ const LogoutPage = () => {
 
 	return (
 		<div className="nameContainer flex flex-col items-center min-h-screen sm:justify-center p-8">
-
+			<div>
 				<div>
-					<div>
-					    <h1>Log Out</h1>
-                        <h2>Please wait while you're being logged out...</h2>
-					</div>
+					<h1>Log Out</h1>
+                    <h2>Please wait while you're being logged out...</h2>
 				</div>
-
+			</div>
 		</div>
 	)
 }
