@@ -1,6 +1,11 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, } from 'firebase/auth'
+import { createUserWithEmailAndPassword, 
+	signInWithEmailAndPassword, 
+	signOut, 
+	onAuthStateChanged, 
+	sendPasswordResetEmail,
+} from 'firebase/auth'
 import { auth } from '../firebase/config'
 import BeatLoader from "react-spinners/BeatLoader"
 
@@ -29,6 +34,10 @@ const AuthContextProvider = ({ children }) => {
 		return signOut(auth)
 	}
 
+	const resetPassword = (email) => {
+		return sendPasswordResetEmail(auth, email)
+	}
+
 	useEffect(() => {
 		// listen for authentication-state changes of users
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,7 +53,8 @@ const AuthContextProvider = ({ children }) => {
 		currentUser,
 		signup,
         login,
-        logout
+        logout,
+		resetPassword
 	}
 
 	return (
