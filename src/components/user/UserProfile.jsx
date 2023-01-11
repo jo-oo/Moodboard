@@ -8,8 +8,6 @@ const UserProfile = () => {
     const { currentUser, userName } = useAuthContext()
     const [show, setShow] = useState(false)
 
-    console.log(currentUser, "name",)
-
     const toggle = () => {
         setShow(!show);
       };
