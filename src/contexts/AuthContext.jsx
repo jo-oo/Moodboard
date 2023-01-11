@@ -1,10 +1,14 @@
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { createUserWithEmailAndPassword, 
+import { 
+	createUserWithEmailAndPassword, 
 	signInWithEmailAndPassword, 
 	signOut, 
 	onAuthStateChanged, 
 	sendPasswordResetEmail,
+	updateEmail,
+	updatePassword,
+	updateProfile,
 } from 'firebase/auth'
 import { auth } from '../firebase/config'
 import BeatLoader from "react-spinners/BeatLoader"
@@ -22,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
 
 
     //create user with email, password and name
-    const signup = async (email, password) => {
+    const signup = (email, password) => {
 	    return createUserWithEmailAndPassword(auth, email, password)
 	}
   
@@ -34,8 +38,28 @@ const AuthContextProvider = ({ children }) => {
 		return signOut(auth)
 	}
 
+	const reloadUser = async () => {
+		await currentUser.reload()
+		setCurrentUser(auth.currentUser)
+		return true
+	}
+
 	const resetPassword = (email) => {
 		return sendPasswordResetEmail(auth, email)
+	}
+
+	const setEmail = (email) => {
+		return updateEmail(currentUser, email)
+	}
+
+	const setPassword = (newPassword) => {
+		return updatePassword(currentUser, newPassword)
+	}
+
+	const setDisplayName = (displayName) => {
+		return updateProfile(currentUser, {
+			displayName,
+		})
 	}
 
 	useEffect(() => {
@@ -51,10 +75,17 @@ const AuthContextProvider = ({ children }) => {
 	const contextValues = {
 		//here is what the children should be able to use 
 		currentUser,
-		signup,
+		
         login,
         logout,
-		resetPassword
+		signup,
+		
+		reloadUser,
+		resetPassword,
+		setDisplayName,
+		setEmail,
+		setPassword,
+	
 	}
 
 	return (
