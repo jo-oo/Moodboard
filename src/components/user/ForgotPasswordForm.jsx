@@ -1,31 +1,37 @@
 import logo from '../../assets/logos/logo.svg'
 import Button from './Button.jsx'
 import Alert from '../../components/general/Alert'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React, { useRef, useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
 
-const LoginForm = () => {
-
+const ForgotPasswordForm = () => {
 	const emailRef = useRef()
-	const passwordRef = useRef()
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
-	const { login } = useAuthContext()
-	const navigate = useNavigate()
+    const [message, setMessage] = useState(false)
+	const { resetPassword } = useAuthContext()
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setError(null);
+        setMessage(null);
 
-		// try to log in the user with the specified credentials
+		// try to send the password reset link to the recieved email
 		try {
 			setLoading(true)
-			await login(emailRef.current.value, passwordRef.current.value)
-			navigate('/')
+
+            // send email
+			await resetPassword(emailRef.current.value)
+
+			// show success message
+			setMessage("Password reset link successfully sent!")
 
 		} catch (err) {
 			setError(err.message)
+			setLoading(false)
+
+        } finally {
 			setLoading(false)
 		}
 	}
@@ -43,13 +49,18 @@ const LoginForm = () => {
                     </div>
 
                     <div className="InfoText flex flex-col items-center justify-center mt-1 mb-7">
-                        <h3 className="text-2xl font-semibold mt-2">Welcome back</h3>
-                        <p className='text-base'>Please enter your details</p>
+                        <h3 className="text-2xl font-semibold mt-2 text-center">Luckily, we don´t have to remember everything</h3>
+                        <p className='text-base text-center mt-4'>Please enter your email address and we will send you a password reset link</p>
                     </div>
 
                     {error && (
                         //send error to Alert component
                         <Alert error={error} />
+                    )}
+
+                    {message && (
+                        //send message to Alert component
+                        <Alert message={message} />
                     )}
 
                     <form onSubmit={handleSubmit}>
@@ -72,44 +83,20 @@ const LoginForm = () => {
                                     focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
                             </div>
-                        </div>
-                
-                        <div className="mt-4">
-                            <label
-                                htmlFor="password"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Password
-                            </label>
-                            <div className="flex flex-col items-start">
-                                <input
-                                    type="password"
-                                    ref={passwordRef} required
-                                    name="password"
-                                    className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
-                                    border-2 
-                                    leading-tight focus:outline-none focus:shadow-outline
-                                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex items-center justify-end mt-2 mb-2">
-                            <p
-                                className="text-sm text-gray-600 hover:text-gray-900"
-                            >
-                                <Link to="/forgot-password">Forgot password?</Link>
-                            </p>
+                            <p className='text-sm italic mt-2 text-end'>Check your spam-folder if email is not recieved</p>
                         </div>
                     
                         <div className="flex items-center justify-end mt-8 mb-2">
+                            <Button disabled={loading} type="submit" value={`Send password reset email`}/>
+
+                        </div>
+                        <div>
                             <p
-                                className="text-sm text-gray-600 hover:text-gray-900"
+                                className="text-sm text-gray-600 hover:text-gray-900 text-end mt-4"
                             >
-                                Don´t have an account? 
-                                <Link to="/signup">Sign Up</Link>
+                                Actually, I remember: {' '}
+                                <Link to="/login">Log In</Link>
                             </p>
-                            <Button disabled={loading} type="submit" value={`SIGN IN`}/>
                         </div>
                     </form>
                     
@@ -120,4 +107,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default ForgotPasswordForm

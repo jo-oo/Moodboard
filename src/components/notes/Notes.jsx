@@ -1,6 +1,9 @@
 import './notes.scss'
+import UserProfile from '../user/UserProfile'
+
 
 const Notes = () => {
+
     return (
         <div className='RightContainer'>
             <div className="NotesContainer">
@@ -9,9 +12,7 @@ const Notes = () => {
                     lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                     lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
                 </div>
-                <div className="LogOut">
-                    <p className="">Log Out</p>
-                </div>
+                <UserProfile />
             </div>
         </div>
     

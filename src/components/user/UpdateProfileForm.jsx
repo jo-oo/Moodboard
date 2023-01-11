@@ -5,45 +5,72 @@ import { Link, useNavigate } from 'react-router-dom'
 import React, { useRef, useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
 
-const SignupForm = () => {
-	const emailRef = useRef()
+const UpdateProfileForm = () => {
     const displayNameRef = useRef()
+	const emailRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
-    const [error, setError] = useState(null)
+	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
-	const { signup, setDisplayName, reloadUser } = useAuthContext()
-	const navigate = useNavigate()
+	const [message, setMessage] = useState(null)
+	const {
+		currentUser,
+		reloadUser,
+		setDisplayName,
+		setEmail,
+		setPassword
+	} = useAuthContext()
+    const navigate = useNavigate()
 
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		//check so that user has entered the same password in both input fields
+		// make sure user has entered the same password in both input fields
 		if (passwordRef.current.value !== passwordConfirmRef.current.value) {
 			return setError("The passwords does not match")
 		}
 
 		setError(null);
+		setMessage(null);
 
-		// try to sign up the user with the specified credentials
+		// update user profile
 		try {
+			// disable update-button while updating is in progress
 			setLoading(true)
-			await signup(emailRef.current.value, passwordRef.current.value, displayNameRef.current.value )
 
-            // set display name and upload photo for the newly created user
-			await setDisplayName(displayNameRef.current.value)
+			// update displayName *ONLY* if it has changed
+			if (
+				displayNameRef.current.value !== currentUser.displayName
+			) {
+				await setDisplayName(displayNameRef.current.value)
+			}
 
-            // reload user
+			// update email *ONLY* if it has changed
+			if (emailRef.current.value !== currentUser.email) {
+				await setEmail(emailRef.current.value)
+			}
+
+			// update password *ONLY* if the user has provided a new password to set
+			if (passwordRef.current.value) {
+				await setPassword(passwordRef.current.value)
+			}
+
+			// reload user
 			await reloadUser()
 
-			navigate('/')
+			setMessage("Profile successfully updated")
+			setLoading(false)
 
-		} catch (err) {
-			setError(err.message)
+            navigate('/')
+
+		} catch (e) {
+			console.log("Error updating profile", e)
+			setError(e.message)
 			setLoading(false)
 		}
 	}
+
 
     return (
         <div>
@@ -58,7 +85,7 @@ const SignupForm = () => {
                     </div>
 
                     <div className="InfoText flex flex-col items-center justify-center mt-1 mb-7">
-                        <h3 className="text-2xl font-semibold mt-2">Create account</h3>
+                        <h3 className="text-2xl font-semibold mt-2">Update Profile</h3>
                         <p className='text-base'>Please enter your details</p>
                     </div>
 
@@ -66,20 +93,27 @@ const SignupForm = () => {
                         //send error to Alert component
                         <Alert error={error} />
                     )}
+                    {error && (
+                        //send message to Alert component
+                        <Alert message={message} />
+                    )}
 
                     <form onSubmit={handleSubmit}>
+                        {/*
+		                    Fill the displayName and email form fields with their current value!
+						*/}
                         <div>
                             <label
                                 className="block text-sm font-medium text-gray-700"
                             >
-                                User Name
+                                Name
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
                                     type="text"
-                                    ref={displayNameRef} 
-                                    required
                                     name="name"
+                                    ref={displayNameRef} 
+                                    defaultValue={currentUser.displayName}
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30 rounded-md 
                                     border-2 
                                     leading-tight focus:outline-none focus:shadow-outline
@@ -97,8 +131,8 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="email"
-                                    ref={emailRef} 
-                                    required
+                                    ref={emailRef} required
+                                    defaultValue={currentUser.email}
                                     name="email"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -113,13 +147,13 @@ const SignupForm = () => {
                                 htmlFor="password"
                                 className="block text-sm font-medium text-gray-700"
                             >
-                                Password
+                                New Password
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
-                                    ref={passwordRef} 
-                                    required
+                                    ref={passwordRef} required
+                                    autoComplete="new-password" 
                                     name="password"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -133,13 +167,13 @@ const SignupForm = () => {
                                 htmlFor="password_confirmation"
                                 className="block text-sm font-medium text-gray-700"
                             >
-                                Confirm Password
+                                Confirm New Password
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
-                                    ref={passwordConfirmRef} 
-                                    required
+                                    ref={passwordConfirmRef} required
+                                    autoComplete="new-password"
                                     name="password_confirmation"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -152,10 +186,10 @@ const SignupForm = () => {
                             <p
                                 className="text-sm text-gray-600 hover:text-gray-900"
                             >
-                                Already registered?
-                                <Link to="/login">Log In</Link>
+                                Changed my mind
+                                <Link to="/">Go to Moodbpard</Link>
                             </p>
-                            <Button disabled={loading} type="submit" value={`REGISTER`}/>
+                            <Button disabled={loading} type="submit" value={`UPDATE PROFILE`}/>
                         </div>
                     </form>
                     
@@ -166,4 +200,4 @@ const SignupForm = () => {
     )
 }
 
-export default SignupForm
+export default UpdateProfileForm
