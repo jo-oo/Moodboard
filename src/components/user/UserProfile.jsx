@@ -5,8 +5,10 @@ import { useState } from 'react';
 
 
 const UserProfile = () => {
-    const { currentUser } = useAuthContext()
+    const { currentUser, userName } = useAuthContext()
     const [show, setShow] = useState(false)
+
+    console.log(currentUser, "name",)
 
     const toggle = () => {
         setShow(!show);
@@ -19,7 +21,8 @@ const UserProfile = () => {
 						<>	
                         
                             {/* User is logged in */}
-                            <p>Hello {currentUser.displayName}!</p>  
+                            <p>Hello {userName}!</p>  
+                            
 
                             <div className='grid place-items-center'>
                         

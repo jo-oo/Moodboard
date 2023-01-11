@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useEffect, useState } from 'react'
 import { 
 	createUserWithEmailAndPassword, 
@@ -22,14 +21,15 @@ const useAuthContext = () => {
 
 const AuthContextProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState(null)
+	const [userName, setUserName] = useState(null)
+	const [userEmail, setUserEmail] = useState(null)
 	const [loading, setLoading] = useState(true)
 
-
     //create user with email, password and name
-    const signup = (email, password) => {
+    const signup = async (email, password) => {
 	    return createUserWithEmailAndPassword(auth, email, password)
 	}
-  
+
     const login = (email, password) => {
 		return signInWithEmailAndPassword(auth, email, password)
 	}
@@ -39,8 +39,10 @@ const AuthContextProvider = ({ children }) => {
 	}
 
 	const reloadUser = async () => {
-		await currentUser.reload()
+		await auth.currentUser.reload()
 		setCurrentUser(auth.currentUser)
+		setUserName(auth.currentUser.displayName)
+		setUserEmail(auth.currentUser.email)
 		return true
 	}
 
@@ -56,8 +58,9 @@ const AuthContextProvider = ({ children }) => {
 		return updatePassword(currentUser, newPassword)
 	}
 
-	const setDisplayName = (displayName) => {
-		return updateProfile(currentUser, {
+	const setDisplayName = async (displayName) => {
+
+		return updateProfile(auth.currentUser, {
 			displayName,
 		})
 	}
@@ -66,26 +69,28 @@ const AuthContextProvider = ({ children }) => {
 		// listen for authentication-state changes of users
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			setCurrentUser(user)
+			setUserName(user?.displayName)
+			setUserEmail(user?.email)
 			setLoading(false)
 		})
 
 		return unsubscribe
 	}, [])
 
+
 	const contextValues = {
 		//here is what the children should be able to use 
 		currentUser,
-		
-        login,
-        logout,
+		login,
+		logout,
 		signup,
-		
 		reloadUser,
 		resetPassword,
 		setDisplayName,
 		setEmail,
 		setPassword,
-	
+		userName,
+		userEmail
 	}
 
 	return (

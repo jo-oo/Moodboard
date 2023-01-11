@@ -31,7 +31,14 @@ const SignupForm = () => {
 			setLoading(true)
 			await signup(emailRef.current.value, passwordRef.current.value, displayNameRef.current.value )
 
+            // set display name and upload photo for the newly created user
+			await setDisplayName(displayNameRef.current.value)
+
+            // reload user
+			await reloadUser()
+
 			navigate('/')
+
 		} catch (err) {
 			setError(err.message)
 			setLoading(false)
