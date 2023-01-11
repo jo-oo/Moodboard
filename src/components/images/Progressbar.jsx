@@ -1,3 +1,5 @@
+/* This Progress Bar can be used setting "progress" to !null in the file where it´s rendered, and then the null/undefrined/0-values can be removed from logic here. If the Progress Bar is simply rendered, it is written to be neraly invisible in non progress mode so that user won´t be confused.*/
+
 const Progressbar = ( { value, label } ) => {
     return (
         <div>
