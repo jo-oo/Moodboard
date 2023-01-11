@@ -1,7 +1,7 @@
 import logo from '../../assets/logos/logo.svg'
 import Button from './Button.jsx'
 import Alert from '../../components/general/Alert'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import React, { useRef, useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
 
@@ -20,6 +20,7 @@ const UpdateProfileForm = () => {
 		setEmail,
 		setPassword
 	} = useAuthContext()
+    const navigate = useNavigate()
 
 
 	const handleSubmit = async (e) => {
@@ -60,6 +61,8 @@ const UpdateProfileForm = () => {
 
 			setMessage("Profile successfully updated")
 			setLoading(false)
+
+            navigate('/')
 
 		} catch (e) {
 			console.log("Error updating profile", e)

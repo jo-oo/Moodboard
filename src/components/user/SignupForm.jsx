@@ -6,13 +6,13 @@ import React, { useRef, useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
 
 const SignupForm = () => {
-
 	const emailRef = useRef()
+    const displayNameRef = useRef()
 	const passwordRef = useRef()
 	const passwordConfirmRef = useRef()
     const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(false)
-	const { signup } = useAuthContext()
+	const { signup, setDisplayName, reloadUser } = useAuthContext()
 	const navigate = useNavigate()
 
 
@@ -29,7 +29,7 @@ const SignupForm = () => {
 		// try to sign up the user with the specified credentials
 		try {
 			setLoading(true)
-			await signup(emailRef.current.value, passwordRef.current.value)
+			await signup(emailRef.current.value, passwordRef.current.value, displayNameRef.current.value )
 
 			navigate('/')
 		} catch (err) {
@@ -65,11 +65,13 @@ const SignupForm = () => {
                             <label
                                 className="block text-sm font-medium text-gray-700"
                             >
-                                Name
+                                User Name
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
                                     type="text"
+                                    ref={displayNameRef} 
+                                    required
                                     name="name"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30 rounded-md 
                                     border-2 
@@ -88,7 +90,8 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="email"
-                                    ref={emailRef} required
+                                    ref={emailRef} 
+                                    required
                                     name="email"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -108,7 +111,8 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
-                                    ref={passwordRef} required
+                                    ref={passwordRef} 
+                                    required
                                     name="password"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -127,7 +131,8 @@ const SignupForm = () => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="password"
-                                    ref={passwordConfirmRef} required
+                                    ref={passwordConfirmRef} 
+                                    required
                                     name="password_confirmation"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 
@@ -143,7 +148,7 @@ const SignupForm = () => {
                                 Already registered?
                                 <Link to="/login">Log In</Link>
                             </p>
-                            <Button value={`REGISTER`}/>
+                            <Button disabled={loading} type="submit" value={`REGISTER`}/>
                         </div>
                     </form>
                     

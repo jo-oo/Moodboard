@@ -19,7 +19,7 @@ const UserProfile = () => {
 						<>	
                         
                             {/* User is logged in */}
-                            <p>You are logged in as {currentUser.email}!</p>  
+                            <p>Hello {currentUser.displayName}!</p>  
 
                             <div className='grid place-items-center'>
                         
