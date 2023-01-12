@@ -4,9 +4,14 @@ import Notes from "../../components/notes/Notes";
 import { FiPlus } from 'react-icons/fi';
 import useGetImages from "../../hooks/useGetImages";
 import UploadImageForm from "../../components/images/UploadImageForm";
+import useViewImages from "../../hooks/useViewImages";
+import TestGrid from "../../components/images/TestGrid";
 
 const Moodboard = () => {
+    //Get me the images! from useGetImages-hook 
     const { data: images, loading } = useGetImages()
+    //Get me the images! from useViewImages-hook 
+    const imagesQuery = useViewImages()
 
     return (
         <div className="Container">
@@ -21,17 +26,20 @@ const Moodboard = () => {
                             TAILWIND
                         </div>
 
-                        {/*WHEN USING GetImages() which uses useStreamCollection*/}
+                        <h2>Here is getImages-hook</h2>
+                        {/* WHEN USING GetImages() which uses useStreamCollection */}
                         {loading && (<p>Loading..</p>) }
                         <div>
                             {!loading && 
                             images.map((image, index) => (
                                 <div key={index}>
                                     <p>{image.name} "type:" {image.type} "path:" {image.path} </p> 
+                                    <img src={image.url} />
                                 </div>
                             ))}
-                        </div>
-
+                        </div> 
+                        <h2>Here is ImagesQuery-hook</h2>
+                        <TestGrid query={imagesQuery}/>
                         <UploadImageForm />
                         
                     </div>
