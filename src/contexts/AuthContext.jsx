@@ -9,7 +9,8 @@ import {
 	updatePassword,
 	updateProfile,
 } from 'firebase/auth'
-import { auth } from '../firebase/config'
+import { doc, setDoc } from 'firebase/firestore'
+import { auth, db, storage } from '../firebase/config'
 import BeatLoader from "react-spinners/BeatLoader"
 
 const AuthContext = createContext()
@@ -26,8 +27,23 @@ const AuthContextProvider = ({ children }) => {
 	const [loading, setLoading] = useState(true)
 
     //create user with email, password and name
-    const signup = async (email, password) => {
-	    return createUserWithEmailAndPassword(auth, email, password)
+    const signup = async (email, password, name) => {
+		await createUserWithEmailAndPassword(auth, email, password)
+
+		// auth.currentUser.uid = "3l97yFNSCcY77HmsjFO3aKPmkzC2"
+
+		// set name and photo
+		await setDisplayName(name)
+
+		// reload user
+		await reloadUser()
+
+		// create user document
+		const docRef = doc(db, 'users', auth.currentUser.uid)   // "users/3l97yFNSCcY77HmsjFO3aKPmkzC2"
+		await setDoc(docRef, {
+			name,
+			email,
+		})
 	}
 
     const login = (email, password) => {

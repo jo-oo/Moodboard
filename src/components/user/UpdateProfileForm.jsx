@@ -93,7 +93,7 @@ const UpdateProfileForm = () => {
                         //send error to Alert component
                         <Alert error={error} />
                     )}
-                    {error && (
+                    {message && (
                         //send message to Alert component
                         <Alert message={message} />
                     )}

@@ -2,10 +2,17 @@ import "./moodboard.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Notes from "../../components/notes/Notes";
 import { FiPlus } from 'react-icons/fi';
-import useGetImages from "../../hooks/useGetImages";
+//import useGetImages from "../../hooks/useGetImages";
+import UploadImageForm from "../../components/images/UploadImageForm";
+import useViewImages from "../../hooks/useViewImages";
+import TestGrid from "../../components/images/TestGrid";
 
 const Moodboard = () => {
-    const { data: images, loading } = useGetImages()
+    //Get me the images! from useGetImages-hook 
+    //const { data: images, loading } = useGetImages()
+    //Get me the images! from useViewImages-hook 
+    //const imagesQuery = useViewImages()
+    const imagesQuery = useViewImages({ fetchOnlyCurrentUser: true })
 
     return (
         <div className="Container">
@@ -19,20 +26,22 @@ const Moodboard = () => {
                         <div className="bg-blue-300">
                             TAILWIND
                         </div>
-                        <h1 className="text-3xl underline">
-      Hello world!
-    </h1>
 
-                        {/*WHEN USING GetImages() which uses useStreamCollection*/}
-                        {loading && (<p>Loading..</p>) }
-                        <div>
+                        <h2>Here is getImages-hook</h2>
+                        {/* WHEN USING GetImages() which uses useStreamCollection */}
+                        {/*{loading && (<p>Loading..</p>) }
+                         <div>
                             {!loading && 
                             images.map((image, index) => (
                                 <div key={index}>
                                     <p>{image.name} "type:" {image.type} "path:" {image.path} </p> 
+                                    <img src={image.url} />
                                 </div>
                             ))}
-                        </div>
+                        </div>  */}
+                        <h2>Here is ImagesQuery-hook</h2>
+                        <TestGrid query={imagesQuery}/>
+                        <UploadImageForm />
                         
                     </div>
                     <div className="Right">
