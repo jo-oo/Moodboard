@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Notes from "../../components/notes/Notes";
 import { FiPlus } from 'react-icons/fi';
 import useGetImages from "../../hooks/useGetImages";
+import UploadImageForm from "../../components/images/UploadImageForm";
 
 const Moodboard = () => {
     const { data: images, loading } = useGetImages()
@@ -19,9 +20,6 @@ const Moodboard = () => {
                         <div className="bg-blue-300">
                             TAILWIND
                         </div>
-                        <h1 className="text-3xl underline">
-      Hello world!
-    </h1>
 
                         {/*WHEN USING GetImages() which uses useStreamCollection*/}
                         {loading && (<p>Loading..</p>) }
@@ -33,6 +31,8 @@ const Moodboard = () => {
                                 </div>
                             ))}
                         </div>
+
+                        <UploadImageForm />
                         
                     </div>
                     <div className="Right">
