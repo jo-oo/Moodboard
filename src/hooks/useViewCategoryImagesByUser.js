@@ -7,7 +7,7 @@ import { useAuthContext } from '../contexts/AuthContext'
 This one is the same as useGetImages. Only it uses query and firestoreQueryData and sends the "query" instead
 */
 
-const useViewImages = (options = {}) => { //Options are defaulted to an empty object
+const useViewCategoryImagesByUser = (options = {}) => { //Options are defaulted to an empty object
     //to later check if user is authenticated to get to view the images
     const { currentUser } = useAuthContext()
 
@@ -15,7 +15,7 @@ const useViewImages = (options = {}) => { //Options are defaulted to an empty ob
 
 	// create ref to collection 'images'
 	const collectionRef = collection(db, 'images')
-   
+ 
                 /*
                 LATER IF YOU WANT TO RENDER NON USED IN PERSON THINGS...then use the fetchOnlyCurrentUserOption. Now it can be removed from Moodboard egentligen..
                 // create queryKey based on whether all images or only the current user's images are requested
@@ -34,29 +34,30 @@ const useViewImages = (options = {}) => { //Options are defaulted to an empty ob
                 
 
     const queryKey = ['images', { user: currentUser.uid }]	
+  
     
-    
-    // create query for collectionRef, order result in reverse cronological order
-    //USE THIS ONE FOR QUERY RENDERING OF NOT LOGGED IN USERS
-	/*const queryRef = options.fetchOnlyCurrentUser
-		? query(collectionRef, where('user', '==', currentUser.uid), orderBy('created', 'desc'))
-		: query(collectionRef, orderBy('created', 'desc'))
-        */
+            // create query for collectionRef, order result in reverse cronological order
+            //USE THIS ONE FOR QUERY RENDERING OF NOT LOGGED IN USERS
+            /*const queryRef = options.fetchOnlyCurrentUser
+                ? query(collectionRef, where('user', '==', currentUser.uid), orderBy('created', 'desc'))
+                : query(collectionRef, orderBy('created', 'desc'))
+                */
         
-        const queryRef = query
+    const queryRef = query
         (collectionRef, 
-        where('user', '==', currentUser.uid), 
-        orderBy('created', 'desc')
-        )
-	
+        where('user', '==', currentUser.uid),
+        where('category', '==', options.categoryId),
+        //orderBy('created', 'desc')
+    )
+       
 
 	// run query for 'images', row 16
-	const imagesQuery = useFirestoreQueryData(queryKey, queryRef, {
+	const imagesByCategoryQuery= useFirestoreQueryData(queryKey, queryRef, {
 		idField: 'id',
 		subscribe: true,
 	})
 
-	return imagesQuery
+	return imagesByCategoryQuery
 }
 
-export default useViewImages
+export default useViewCategoryImagesByUser
