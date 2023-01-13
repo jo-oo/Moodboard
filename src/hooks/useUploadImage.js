@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { useAuthContext } from '../contexts/AuthContext'
 import { db, storage } from '../firebase/config'
 
+
 const useUploadImage = () => {
 	const [error, setError] = useState(null)
 	const [isError, setIsError] = useState(null)
@@ -56,6 +57,8 @@ const useUploadImage = () => {
 
 			// create reference to db-collection 'images'
 			const collectionRef = collection(db, 'images')
+		
+			console.log(image);
 
 			// create document in db for the uploaded image
 			await addDoc(collectionRef, {
@@ -65,7 +68,9 @@ const useUploadImage = () => {
 				type: image.type,
 				size: image.size,
 				user: currentUser.uid,
+				id: uuid,
 				url,
+				category: uuid,
 			})
 
 	
