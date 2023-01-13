@@ -1,13 +1,13 @@
-const CategoriesTestGrid = ({ query }) => {
+const CategoriesTestGrid = ({ categoriesQuery }) => {
 
-    if (query.isError) {
-        console.log("Error query", query.error.message)
+    if (categoriesQuery.isError) {
+        console.log("Error query", categoriesQuery.error.message)
         
     }
 
 	return (
 		<div>
-			{query.data && query.data.map(category => (
+			{categoriesQuery.data && categoriesQuery.data.map(category => (
 				<div key={category.id} className="d-flex mb-4">
 					<span title={category.name}>
                         <p>{category.name}</p>

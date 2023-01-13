@@ -50,7 +50,7 @@ const Moodboard = () => {
                         {/* <TestGrid query={imagesQuery}/> */}
 
                         <h2>Here is CATEGORIESQuery-hook</h2>
-                        <CategoriesTestGrid query={categoriesQuery}/>
+                        <CategoriesTestGrid categoriesQuery={categoriesQuery}/>
                         
                         <UploadImageForm />
                         
