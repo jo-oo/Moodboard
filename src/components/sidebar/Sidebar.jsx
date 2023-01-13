@@ -1,8 +1,16 @@
 import './sidebar.scss'
 import logo from '../../assets/logos/logo.svg'
-import CategoryList from './CategoryList'
+import useViewCategories from "../../hooks/useViewCategories";
+//import CategoryList from './CategoryList'
+import Cards from './Cards';
+//import CategoryList from './CategoryList';
+
 
 const Sidebar = () => {
+
+    const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
+    console.log("QCATEGORY WUERY categpry" , categoriesQuery.data);
+
     return (
         <div className="SidebarContainer">
             <div className="Sidebar">
@@ -12,7 +20,8 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className="Bottom">
-                    <CategoryList/>
+                    <Cards categoriesQuery={categoriesQuery}/>
+                    {/* <CategoryList /> */}
                 </div>
             </div>
         </div>

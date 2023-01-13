@@ -1,8 +1,7 @@
 const CategoriesTestGrid = ({ categoriesQuery }) => {
 
     if (categoriesQuery.isError) {
-        console.log("Error query", categoriesQuery.error.message)
-        
+        console.log("Error query", categoriesQuery.error.message)  
     }
 
 	return (
