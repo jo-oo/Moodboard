@@ -1,17 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./moodboard.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Notes from "../../components/notes/Notes";
 import { FiPlus } from 'react-icons/fi';
 //import useGetImages from "../../hooks/useGetImages";
 import UploadImageForm from "../../components/images/UploadImageForm";
-
-//import useViewUsersImages from "../../hooks/useViewUsersImages";
-                       // import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
-
 //import useViewCategories from "../../hooks/useViewCategories";
 import TestGrid from "../../components/images/TestGrid";
 //import CategoriesTestGrid from "../../components/images/CategoriesTestGrid";
+import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
+
+
 
 const Moodboard = () => {
     //Get me the images! from useGetImages-hook 
@@ -23,13 +22,96 @@ const Moodboard = () => {
         //const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
    // const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true , categoryId : 'tqmuluFvtjESTW88mG3J'})
     //console.log("QCATEGORY WUERY categpry" , categoriesQuery.data);
-const [selectedCategory, setSelectedCategory] = useState('')
 
 
-//callback function for the SELECT BUTTON CATEGORY STATE IN CARD.jsx
-const handleChildFunc = (id) => {
-    console.log("id", id)
- }
+
+    const [selectedCategory, setSelectedCategory] = useState('')
+    
+	const [data, setData] = useState([])
+	const [loading, setLoading] = useState(true)
+
+	// const getData = async () => {
+
+	// 	setLoading(true)
+
+    //     const handleChildFunc = (id) => {
+    //         setSelectedCategory(id)
+    //         console.log("ID " + id)
+    //     }
+	
+    //     const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true, categoryId: 'tqmuluFvtjESTW88mG3J'})
+
+	// 	if (id !== categoryId) {
+	// 		setData(false)
+	// 		setLoading(false)
+	// 		return
+	// 	}
+
+	// 	setData(imagesByCategoryQuery.data())
+	// 	setLoading(false)
+	// }
+
+	// useEffect(() => {
+	// 	getData()
+	// }, [])
+
+
+
+    //callback function for the SELECT BUTTON CATEGORY STATE IN CARD.jsx
+    // //The value the user clicked is now stored in selsectedItem. It is the category id.
+    //  const handleChildFunc = async (id) => {
+    //      //console.log("id", id)
+    //      setLoading(true)
+    //         setSelectedCategory(id)
+    //      return selectedCategory
+    //      setLoading(false)
+    //  }
+
+    //  console.log("ID ", selectedCategory)
+
+    const handleChildFunc = useCallback(( id) => {
+ 
+         return setSelectedCategory(id)
+       
+     }, [])
+     console.log("ID first time ", selectedCategory)
+     console.log("Does it re-render ID? No it only renders twice (I guess due to React-StrictModes default mode) ", selectedCategory)
+
+
+
+     //UNNECCESSARY??
+     useEffect(() => {
+        // this will be triggered only when "handleChildFunc" value actually changes
+        handleChildFunc();
+      }, [handleChildFunc]);
+
+
+
+	// const handleChildFunc = async (id) => {
+    //     return setSelectedCategory(id)
+	// }
+    // console.log("IIIDD"+selectedCategory)
+    // const handleChildFunc = (id) => {
+    //     setSelectedCategory(id)
+    //     console.log("ID   ", selectedCategory)
+    // }
+
+    // const handleChildFunc = useCallback((id) => {
+	// 	if (!id) {
+	// 		return
+	// 	}
+
+	// 	console.log("Mmmm, yummy", id)
+    //     setSelectedCategory(id)
+	// 	// trigger upload of the first meme
+	// 	console.log("IIIIID" + id)
+	// }, [])
+
+    // console.log("ID:et är   ", selectedCategory)
+
+
+
+
 
     return (
         <div className="Container">
@@ -38,6 +120,9 @@ const handleChildFunc = (id) => {
                 <Sidebar myFunc={handleChildFunc}/>
                 <div className="MainMoodboard">
                     <div className="Middle">
+
+                        {/*renders directly*/}
+                        <h1>{selectedCategory}</h1>
 
                         {/*Tailwind test*/}
                         <div className="bg-blue-300">
@@ -63,7 +148,7 @@ const handleChildFunc = (id) => {
 
                         <h2>Here is CATEGORIESQuery-hook</h2>
                              {/* <CategoriesTestGrid categoriesuery={categoriesQuery}/> */}
-                        <TestGrid/>
+                        <TestGrid selectedCategory={selectedCategory}/>
                         <UploadImageForm />
                         
                     </div>
