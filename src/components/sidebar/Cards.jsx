@@ -4,7 +4,7 @@ import { HiOutlinePlus } from 'react-icons/hi';
 import { FiPlus } from 'react-icons/fi';
 import { TiPlus } from 'react-icons/ti';
 
-const Cards = ({ categoriesQuery }) => {
+const Cards = ({ categoriesQuery, myFunc }) => {
 
     //const list = categoryList;
     
@@ -13,6 +13,12 @@ const Cards = ({ categoriesQuery }) => {
     }
 
     console.log("Category is this id" + [categoriesQuery]);
+
+
+    // const handleChildFunc = (id) => {
+   
+    //     console.log("id", id)
+    // }
 
     return ( 
         <div className="CardsBox"> 
@@ -24,7 +30,7 @@ const Cards = ({ categoriesQuery }) => {
                 return (
                     <div key={i} className="Cards">
                         {/* send rendering of each category to a Card component. Send category data there */}
-                        <Card category={category} nr={i}/>
+                        <Card category={category} nr={i} myFunc={myFunc}/>
                     </div>
                 );
             })}

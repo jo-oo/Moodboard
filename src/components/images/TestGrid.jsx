@@ -1,4 +1,9 @@
-const TestGrid = ({ query, imagesByCategoryQuery }) => {
+import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
+
+const TestGrid = ({ query }) => {
+
+	//skickar in parametrarna fetchOnlyCurrentUser % categoryId TILL use-hooken som nett objekt
+	const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true, categoryId: 'tqmuluFvtjESTW88mG3J'})
 
     // if (imagesByCategoryQuery.isError) {
     //     console.log("Error query", imagesByCategoryQuery.error.message)
