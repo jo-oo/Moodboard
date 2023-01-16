@@ -4,14 +4,15 @@ import { HiOutlinePlus } from 'react-icons/hi';
 import { FiPlus } from 'react-icons/fi';
 import { TiPlus } from 'react-icons/ti';
 
-const Cards = ({ categoriesQuery  }) => {
+const Cards = ({ categoriesQuery }) => {
 
     //const list = categoryList;
-
+    
     if (categoriesQuery.isError) {
-        console.log("Error query", categoriesQuery.error.message)
-        
+        console.log("Error query", categoriesQuery.error.message)  
     }
+
+    console.log("Category is this id" + [categoriesQuery]);
 
     return ( 
         <div className="CardsBox"> 
