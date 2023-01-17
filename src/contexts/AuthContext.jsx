@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { 
 	createUserWithEmailAndPassword, 
@@ -25,6 +26,10 @@ const AuthContextProvider = ({ children }) => {
 	const [userName, setUserName] = useState(null)
 	const [userEmail, setUserEmail] = useState(null)
 	const [loading, setLoading] = useState(true)
+    const [searchParams, setSearchParams] = useSearchParams({ category: ''}) //intitiates useSearchParams with a category empty from the GET-request
+
+	//get category from searchParams. //use searchParams takes the id of the category and puts it in the url
+    const category = searchParams.get('category')
 
     //create user with email, password and name
     const signup = async (email, password, name) => {
@@ -106,7 +111,9 @@ const AuthContextProvider = ({ children }) => {
 		setEmail,
 		setPassword,
 		userName,
-		userEmail
+		userEmail,
+		setSearchParams,
+		category
 	}
 
 	return (

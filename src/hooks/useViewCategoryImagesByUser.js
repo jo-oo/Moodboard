@@ -7,11 +7,23 @@ import { useAuthContext } from '../contexts/AuthContext'
 This one is the same as useGetImages. Only it uses query and firestoreQueryData and sends the "query" instead
 */
 
-const useViewCategoryImagesByUser = (options = {}) => { //Options are defaulted to an empty object
-    //to later check if user is authenticated to get to view the images
-    const { currentUser } = useAuthContext()
+/*
+*
+HOOK THAT NOW IS USED TO FETCH IMAGES BY CATEGORY
+*
+*/
 
-    console.log(currentUser.uid)
+
+
+
+const useViewCategoryImagesByUser = (options = {}) => { //Options are defaulted to an empty object. We get this from the outside
+//to later check if user is authenticated to get to view the images
+
+    console.log('options obj->',options)
+
+    const { currentUser, category } = useAuthContext()
+
+    console.log('uid-->',currentUser.uid)
 
 	// create ref to collection 'images'
 	const collectionRef = collection(db, 'images')
@@ -31,28 +43,39 @@ const useViewCategoryImagesByUser = (options = {}) => { //Options are defaulted 
                         querykey2 = ['']
                 }
                 */
-                
+    // create query for collectionRef if true else render nothing
+    const queryRef = options.fetchOnlyCurrentUser
+                        ? query
+                               (collectionRef, 
+                                where('user', '==', currentUser.uid),
+                                where('category', '==', category))
+                    
+                        : query('')
 
-    const queryKey = ['images', { user: currentUser.uid }]	
-  
+    console.log("Cattt", category)
+
+    const queryKey = ['images', { user: currentUser.uid, category }]	
+
+    // let queryRef;
+
+    // if(!options.categoryId) {
+    //         queryRef = query (collectionRef, 
+    //         where('user', '==', currentUser.uid),
+    //     ) 
+
+    // } else {
+    //     queryRef = query
+    //     (collectionRef, 
+    //         where('user', '==', currentUser.uid),
+    //         where('category', '==', options.categoryId)//detta kommer in hit
+    //         //where('category', '==', 'tqmuluFvtjESTW88mG3J'),
+    //         //orderBy('created', 'desc')
+    //     )
+    // }
     
-            // create query for collectionRef, order result in reverse cronological order
-            //USE THIS ONE FOR QUERY RENDERING OF NOT LOGGED IN USERS
-            /*const queryRef = options.fetchOnlyCurrentUser
-                ? query(collectionRef, where('user', '==', currentUser.uid), orderBy('created', 'desc'))
-                : query(collectionRef, orderBy('created', 'desc'))
-                */
-        
-    const queryRef = query
-        (collectionRef, 
-        where('user', '==', currentUser.uid),
-        where('category', '==', options.categoryId),
-        //orderBy('created', 'desc')
-    )
-       
-
+    
 	// run query for 'images', row 16
-	const imagesByCategoryQuery= useFirestoreQueryData(queryKey, queryRef, {
+	const imagesByCategoryQuery = useFirestoreQueryData(queryKey, queryRef, {
 		idField: 'id',
 		subscribe: true,
 	})

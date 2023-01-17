@@ -4,18 +4,13 @@ import useViewCategories from "../../hooks/useViewCategories";
 //import CategoryList from './CategoryList'
 import Cards from './Cards';
 
-
-const Sidebar = ( { myFunc } ) => {
-
+const Sidebar = ( ) => {
     //fetching the categories of that user
     const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
     console.log("Catwgory query for only the categories of the user" , categoriesQuery.data);
-   
-
-
 
     return (
-        <div className="SidebarContainer">
+        <div className="SidebarContainer">
             <div className="Sidebar">
                 <div className="Top justify-center">
                     <div>
@@ -23,9 +18,8 @@ const Sidebar = ( { myFunc } ) => {
                     </div>
                 </div>
                 <div className="Bottom">
-                    <Cards categoriesQuery={categoriesQuery} myFunc={myFunc} />
+                    <Cards categoriesQuery={categoriesQuery} />
                     {/* <CategoryList /> */}
-            
                 </div>
             </div>
         </div>
