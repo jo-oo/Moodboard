@@ -2,17 +2,43 @@ import "./moodboard.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Notes from "../../components/notes/Notes";
 import { FiPlus } from 'react-icons/fi';
-//import useGetImages from "../../hooks/useGetImages";
 import UploadImageForm from "../../components/images/UploadImageForm";
-import useViewImages from "../../hooks/useViewImages";
 import TestGrid from "../../components/images/TestGrid";
 
 const Moodboard = () => {
     //Get me the images! from useGetImages-hook 
     //const { data: images, loading } = useGetImages()
-    //Get me the images! from useViewImages-hook 
-    //const imagesQuery = useViewImages()
-    const imagesQuery = useViewImages({ fetchOnlyCurrentUser: true })
+                    // const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true, categoryId: 'tqmuluFvtjESTW88mG3J'})
+    //const imagesQuery = useViewUsersImages({ fetchOnlyCurrentUser: true })
+        //const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
+   // const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true , categoryId : 'tqmuluFvtjESTW88mG3J'})
+
+
+	// const getData = async () => {
+
+	// 	setLoading(true)
+
+    //     const handleChildFunc = (id) => {
+    //         setSelectedCategory(id)
+    //         console.log("ID " + id)
+    //     }
+	
+    //     const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true, categoryId: 'tqmuluFvtjESTW88mG3J'})
+
+	// 	if (id !== categoryId) {
+	// 		setData(false)
+	// 		setLoading(false)
+	// 		return
+	// 	}
+
+	// 	setData(imagesByCategoryQuery.data())
+	// 	setLoading(false)
+	// }
+
+	// useEffect(() => {
+	// 	getData()
+	// }, [])
+
 
     return (
         <div className="Container">
@@ -21,11 +47,6 @@ const Moodboard = () => {
                 <Sidebar/>
                 <div className="MainMoodboard">
                     <div className="Middle">
-
-                        {/*Tailwind test*/}
-                        <div className="bg-blue-300">
-                            TAILWIND
-                        </div>
 
                         <h2>Here is getImages-hook</h2>
                         {/* WHEN USING GetImages() which uses useStreamCollection */}
@@ -40,7 +61,13 @@ const Moodboard = () => {
                             ))}
                         </div>  */}
                         <h2>Here is ImagesQuery-hook</h2>
-                        <TestGrid query={imagesQuery}/>
+
+                        {/* <TestGrid  imagesByCategoryQuery={imagesByCategoryQuery}/> */}
+                        {/* <TestGrid  query={imagesQuery}/> */}
+
+                        <h2>Here is CATEGORIESQuery-hook</h2>
+                        {/* <CategoriesTestGrid categoriesuery={categoriesQuery}/> */}
+                        <TestGrid/>
                         <UploadImageForm />
                         
                     </div>
