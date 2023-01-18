@@ -16,4 +16,12 @@
     display: grid;
     grid-template-columns: 11fr 1fr;
     background-color: rgb(230, 219, 232);
+    height: 100vh;
+    position: sticky;  
+    overflow-y: auto;
+}
+
+.Middle {
+  
+
 }
