@@ -9,11 +9,7 @@ import MasonryGrid from "../../components/images/MasonryGrid";
 
 const Moodboard = () => {
 
-    const images = [
-        "https://picsum.photos/200/300?image=1050",
-        //...
-        "https://picsum.photos/300/300?image=206",
-    ]
+
 
 
 
@@ -79,10 +75,10 @@ const Moodboard = () => {
                         <h2>Here is CATEGORIESQuery-hook</h2>
                         {/* <CategoriesTestGrid categoriesuery={categoriesQuery}/> */}
                         <MasonryGrid/>
-                        {/* <TestGrid/>
+                        {/* <TestGrid/> */}
                        
                         
-                        <UploadImageForm /> */}
+                        <UploadImageForm />
 
                     </div>
                     <div className="Right">
