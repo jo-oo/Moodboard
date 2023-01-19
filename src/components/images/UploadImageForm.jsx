@@ -8,15 +8,38 @@ import useUploadImage from '../../hooks/useUploadImage'
 const UploadImage = () => {
 	const [image, setImage] = useState(null)
 	const [message, setMessage] = useState()
+    const [error, setError] = useState(null)
 	const uploadImage = useUploadImage()
 
-	const handleFileChange = (e) => {
-		if (e.target.files[0]) {
-			setImage(e.target.files[0])
-		}
-		console.log("File changed!", e.target.files[0])
-	}
+    const fileTypes= [
+        'image/gif','image/jpeg',
+        'image/png',
+        'image/webp' 
+    ]
 
+	// const handleFileChange = (e) => {
+	// 	if (e.target.files[0]) {
+	// 		setImage(e.target.files[0])
+	// 	}
+	// 	console.log("File changed!", e.target.files[0])
+	// }
+
+    	const handleFileChange = (e) => {
+            let selected = e.target.files[0]
+            if (!selected) {
+                setMessage("No photo selected")
+            }
+            if (selected && fileTypes.includes(selected.type)) {
+                setImage(selected);
+                setError(''); //if error message from trying to upload wrong file, then reset that message to if user chooses a correct file upload
+            } else {
+                setImage(null); //if not permitted file: reset
+                setError('Please select a valid image file type');
+            }
+			console.log("File changed!", e.target.files[0])
+		}
+		
+	
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
@@ -45,19 +68,18 @@ const UploadImage = () => {
                         <h3 className="text-2xl font-semibold mt-2">Upload image</h3>
                         <p className='text-base'>Choose your file</p>
                     </div>
-{/* 
+
                     {error && (
                         //send error to Alert component
                         <Alert error={error} />
-                    )} */}
+                    )} 
 
 					{message && (
                         //send message to Alert component
                         <Alert message={message} />
                     )}
 
-					
-
+				
                     <form onSubmit={handleSubmit} onReset={handleReset}>
 
                         <div className="mt-4">
@@ -75,6 +97,7 @@ const UploadImage = () => {
                                     leading-tight focus:outline-none focus:shadow-outline
                                     focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                 />
+
 								<span className="mt-1">
 									{
 										image
