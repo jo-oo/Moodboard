@@ -1,7 +1,7 @@
 import logo from '../../assets/logos/logo.svg'
 import Button from '../../components/user/Button'
 import Alert from '../../components/general/Alert'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Progressbar from './Progressbar'
 import useUploadImage from '../../hooks/useUploadImage'
 
@@ -10,6 +10,7 @@ const UploadImage = () => {
 	const [message, setMessage] = useState()
     const [error, setError] = useState(null)
 	const uploadImage = useUploadImage()
+    const inputRef = useRef()
 
     const fileTypes= [
         'image/gif','image/jpeg',
@@ -45,7 +46,7 @@ const UploadImage = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		uploadImage.upload(image)
+		uploadImage.upload(image,inputRef.current.value)
 	}
 
 	const handleReset = () => {
@@ -109,6 +110,31 @@ const UploadImage = () => {
 								</span>
                             </div>
                         </div>
+
+                        
+                        <div className="mt-4">
+                            <label
+                                htmlFor="category"
+                                className="block text-sm font-medium text-gray-700"
+                            >
+                                Category
+                            </label>
+                            <div className="flex flex-col items-start">
+                                <input
+                                    type="text"
+                                    ref={inputRef} 
+                                    required= "A category must be submitted"
+                                    name="category"
+                                    className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
+                                    border-2 
+                                    leading-tight focus:outline-none focus:shadow-outline
+                                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                />
+                            </div>
+                        </div>
+
+
+
                     
                         <div className="flex items-center justify-end mt-8 mb-2">
                             <Button disabled={uploadImage.isUploading} type="submit" value={`UPLOAD`}/>

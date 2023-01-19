@@ -15,7 +15,7 @@ const useUploadImage = () => {
 
 	const { currentUser } = useAuthContext()
 
-	const upload = async (image) => {
+	const upload = async (image, categoryRef) => {
 		// reset internal state
 		setError(null)
 		setIsError(null)
@@ -70,7 +70,7 @@ const useUploadImage = () => {
 				user: currentUser.uid,
 				id: uuid,
 				url,
-				category: uuid,
+				category: categoryRef.toLowerCase(),
 			})
 
 	
