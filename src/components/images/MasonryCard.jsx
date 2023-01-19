@@ -21,7 +21,7 @@ const styles = {
     card: {
         margin: '15px 10px',
         padding: 0,
-        borderRadius: '16px',
+        borderRadius: '10px',
         backgroundColor: 'lightgrey',
         position: 'relative', //nya 
         overflow: 'hidden',

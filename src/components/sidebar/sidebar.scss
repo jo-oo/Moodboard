@@ -1,5 +1,5 @@
 .SidebarContainer {
-    background-color: rgb(210, 187, 187);
+    background-color: #efeff1;
     display: grid;
     //grid-template-columns: 182px;
     height: 100vh;
@@ -9,14 +9,13 @@
     overflow-y: auto;
 
     .Sidebar {
-        background-color: white;
+        background-color: #efeff1;
         grid-template-columns: 1fr;
-        
     }
 
     .Top {
         display: grid;
-        background-color: rgb(199, 199, 217);
+        background-color: #efeff1;
         text-align: center;
         margin-bottom: 2rem;
 

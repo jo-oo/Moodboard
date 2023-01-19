@@ -1,7 +1,7 @@
 .RightContainer {
  
     .NotesContainer {
-        background-color: rgb(168, 111, 40);
+        background-color: #efeff1;
         display: grid;
         height: 100vh;
         padding: 3em 1em 4em 1em;
@@ -10,6 +10,9 @@
     
         .Notepad {
             background-color: white;
+            border: 1px solid;
+            border-radius: 4px;
+            border-color: rgb(189, 189, 189);
             grid-template-columns: 1fr;
             padding: 2em;  
             max-height: 100vh;
