@@ -1,22 +1,27 @@
 
 
-const MasonryCard = ( {data}) => {
+const MasonryCard = ( {data, setSelectedImage}) => {
    // console.log(props)
     return (
-    <div style={{
+    <div 
+
+        style={{
             ...styles.card,
             ...styles['medium']
             }}>
+
                 <img src={data.url}  
+                        onClick={() =>setSelectedImage(data.url)
+      
+                        } //passing in the value of the image we want to show
                     style={{
-                ...styles.mainPic,
-               
-            
-                }}/>
+                ...styles.mainPic,            
+                }}/>                 
         </div>
     )
 }
 
+//lägg till img-wrap på styles card
 const styles = {
     card: {
         margin: '15px 10px',
