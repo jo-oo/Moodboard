@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./moodboard.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Notes from "../../components/notes/Notes";
@@ -5,10 +6,12 @@ import { FiPlus } from 'react-icons/fi';
 import UploadImageForm from "../../components/images/UploadImageForm";
 import TestGrid from "../../components/images/TestGrid";
 import MasonryGrid from "../../components/images/MasonryGrid";
+import Modal from "../../components/images/Modal";
 
 
 const Moodboard = () => {
-
+    const [selectedCategory, setSelectedCategory] = useState(null)
+    const [selectedImage, setSelectedImage] = useState(null)
 
 
 
@@ -55,7 +58,9 @@ const Moodboard = () => {
                 <div className="MainMoodboard">
                     <div className="Middle">
 
-                        <MasonryGrid/>
+                        <MasonryGrid setSelectedImage={setSelectedImage}/>
+                        {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
+                         {selectedImage && <Modal selectedImage={selectedImage}  setSelectedImage={setSelectedImage}/>}
 
                         <h2>Here is getImages-hook</h2>
                         {/* WHEN USING GetImages() which uses useStreamCollection */}

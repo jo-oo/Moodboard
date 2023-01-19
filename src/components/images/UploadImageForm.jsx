@@ -17,6 +17,8 @@ const UploadImage = () => {
         'image/webp' 
     ]
 
+    // const maxSize= 4 * 1024 * 1024 // 4 mb
+
 	// const handleFileChange = (e) => {
 	// 	if (e.target.files[0]) {
 	// 		setImage(e.target.files[0])
@@ -74,10 +76,10 @@ const UploadImage = () => {
                         <Alert error={error} />
                     )} 
 
-					{message && (
+					{/* {message && (
                         //send message to Alert component
                         <Alert message={message} />
-                    )}
+                    )} */}
 
 				
                     <form onSubmit={handleSubmit} onReset={handleReset}>
