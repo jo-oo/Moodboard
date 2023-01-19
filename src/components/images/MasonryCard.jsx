@@ -1,5 +1,4 @@
 
-
 const MasonryCard = ( {data, setSelectedImage}) => {
    // console.log(props)
     return (
@@ -13,7 +12,7 @@ const MasonryCard = ( {data, setSelectedImage}) => {
                 <img src={data.url}  
                         onClick={() =>setSelectedImage(data.url)
       
-                        } //passing in the value of the image we want to show
+                        } //passing in the value of the image we want to show. HaNDLED ALL THE CLICKING OF THE IMAGE
                     style={{
                 ...styles.mainPic,            
                 }}/>                 

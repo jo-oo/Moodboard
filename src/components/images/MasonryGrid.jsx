@@ -2,8 +2,8 @@ import MasonryCard from './MasonryCard.jsx';
 import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
 
 
-const MasonryGrid = ({ setSelectedImage }) => {
-    const { data } = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
+const MasonryGrid = ({ setSelectedImage, data }) => {
+    // const { data } = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
     return (
 
         <div className='h-full sticky'> {/*for some reason this centerd the MAsonry-div inside the 

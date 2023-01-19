@@ -7,13 +7,24 @@ import UploadImageForm from "../../components/images/UploadImageForm";
 import TestGrid from "../../components/images/TestGrid";
 import MasonryGrid from "../../components/images/MasonryGrid";
 import Modal from "../../components/images/Modal";
+import { useEffect } from "react";
+import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { useCallback } from "react";
 
 
 const Moodboard = () => {
-    const [selectedCategory, setSelectedCategory] = useState(null)
+    const [selectedCategory, setSelectedCategory] = useState('')
     const [selectedImage, setSelectedImage] = useState(null)
+    const [isSending, setIsSending] = useState(false)
+    const { data } = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true , selectedCategory : selectedCategory})
+    
+    useEffect(() => {
+    
+        console.log('selectedCategory', selectedCategory)
+    },[data]) 
 
-
+  
 
 
     //Get me the images! from useGetImages-hook 
@@ -54,11 +65,11 @@ const Moodboard = () => {
         <div className="Container">
 
             <div className="Moodboard">
-                <Sidebar/>
+                <Sidebar setSelectedCategory={setSelectedCategory}/>
                 <div className="MainMoodboard">
                     <div className="Middle">
 
-                        <MasonryGrid setSelectedImage={setSelectedImage}/>
+                        <MasonryGrid setSelectedImage={setSelectedImage} data={data}/>
                         {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
                          {selectedImage && <Modal selectedImage={selectedImage}  setSelectedImage={setSelectedImage}/>}
 

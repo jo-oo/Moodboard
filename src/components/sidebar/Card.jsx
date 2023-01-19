@@ -1,14 +1,18 @@
 import "./card.scss";
 import { useAuthContext } from "../../contexts/AuthContext";
 
-const Card = ( { category } )  => {
+const Card = ( { category , setSelectedCategory} )  => {
 
     const {setSearchParams } = useAuthContext()
 
+    
     return (
         <div className="Card">
-            <button onClick={() => 
+            {/* <button onClick={() => 
             setSearchParams({category: category.id})
+             }> */}
+              <button onClick={() => 
+            setSelectedCategory(category.id)
              }>
             
             {category.id}

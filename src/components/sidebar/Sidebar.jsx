@@ -4,7 +4,7 @@ import useViewCategories from "../../hooks/useViewCategories";
 //import CategoryList from './CategoryList'
 import Cards from './Cards';
 
-const Sidebar = ( ) => {
+const Sidebar = ( {setSelectedCategory}) => {
     //fetching the categories of that user
     const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
     console.log("Catwgory query for only the categories of the user" , categoriesQuery.data);
@@ -18,7 +18,7 @@ const Sidebar = ( ) => {
                     </div>
                 </div>
                 <div className="Bottom">
-                    <Cards categoriesQuery={categoriesQuery} />
+                    <Cards categoriesQuery={categoriesQuery} setSelectedCategory={setSelectedCategory} />
                     {/* <CategoryList /> */}
                 </div>
             </div>

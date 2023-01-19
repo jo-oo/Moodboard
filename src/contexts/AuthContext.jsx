@@ -29,7 +29,7 @@ const AuthContextProvider = ({ children }) => {
     const [searchParams, setSearchParams] = useSearchParams({ category: ''}) //intitiates useSearchParams with a category empty from the GET-request
 
 	//get category from searchParams. //use searchParams takes the id of the category and puts it in the url
-    const category = searchParams.get('category')
+    const selectedCategory = searchParams.get('category')
 
     //create user with email, password and name
     const signup = async (email, password, name) => {
@@ -113,7 +113,7 @@ const AuthContextProvider = ({ children }) => {
 		userName,
 		userEmail,
 		setSearchParams,
-		category
+		category: selectedCategory
 	}
 
 	return (
