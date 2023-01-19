@@ -5,7 +5,7 @@ const MasonryCard = ( {data}) => {
     return (
     <div style={{
             ...styles.card,
-            ...styles['small']
+            ...styles['medium']
             }}>
                 <img src={data.url}  
                     style={{

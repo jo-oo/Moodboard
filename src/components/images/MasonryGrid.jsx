@@ -32,16 +32,15 @@ const styles = {
     pin_container: {
         margin: 0,
         padding: 0,
-        width: '50vw',
+        width: '60vw',
         display: 'grid',
         //flex: 1, //från nya 
-        gridTemplateColumns: 'repeat(auto-fill, 172px)', //put as many 172 px cards in one row that can fit into the container
+        gridTemplateColumns: 'repeat(auto-fill, 200px)', //put as many 172 px cards in one row that can fit into the container. 250px is the recommended  value
         gridAutoRows: '10px',
         position: 'absolute',
         left: '50%',
         transform: 'translateX(-50%)',
         justifyContent: 'center',
-        backgroundColor: 'grey',
         height: 'auto', //nya
     }
 }

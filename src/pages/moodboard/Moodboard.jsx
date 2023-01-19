@@ -55,6 +55,8 @@ const Moodboard = () => {
                 <div className="MainMoodboard">
                     <div className="Middle">
 
+                        <MasonryGrid/>
+
                         <h2>Here is getImages-hook</h2>
                         {/* WHEN USING GetImages() which uses useStreamCollection */}
                         {/*{loading && (<p>Loading..</p>) }
@@ -74,7 +76,7 @@ const Moodboard = () => {
 
                         <h2>Here is CATEGORIESQuery-hook</h2>
                         {/* <CategoriesTestGrid categoriesuery={categoriesQuery}/> */}
-                        <MasonryGrid/>
+                      
                         {/* <TestGrid/> */}
                        
                         

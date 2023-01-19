@@ -1,6 +1,5 @@
 .Container{
     display: grid;
-    background-color: rgb(228, 161, 242);
     min-width: 100vw;
     min-height: 100vh;
 }
@@ -9,13 +8,12 @@
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     justify-content: space-between;
-    background-color: rgb(228, 161, 242);
 }
   
 .MainMoodboard {
     display: grid;
     grid-template-columns: 11fr 1fr;
-    background-color: rgb(230, 219, 232);
+    background-color: rgb(235, 235, 235);
     height: 100vh;
     position: sticky;  
     overflow-y: auto;
