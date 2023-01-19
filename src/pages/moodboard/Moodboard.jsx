@@ -4,8 +4,15 @@ import Notes from "../../components/notes/Notes";
 import { FiPlus } from 'react-icons/fi';
 import UploadImageForm from "../../components/images/UploadImageForm";
 import TestGrid from "../../components/images/TestGrid";
+import MasonryGrid from "../../components/images/MasonryGrid";
+
 
 const Moodboard = () => {
+
+
+
+
+
     //Get me the images! from useGetImages-hook 
     //const { data: images, loading } = useGetImages()
                     // const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true, categoryId: 'tqmuluFvtjESTW88mG3J'})
@@ -67,9 +74,12 @@ const Moodboard = () => {
 
                         <h2>Here is CATEGORIESQuery-hook</h2>
                         {/* <CategoriesTestGrid categoriesuery={categoriesQuery}/> */}
-                        <TestGrid/>
-                        <UploadImageForm />
+                        <MasonryGrid/>
+                        {/* <TestGrid/> */}
+                       
                         
+                        <UploadImageForm />
+
                     </div>
                     <div className="Right">
                         <div>
