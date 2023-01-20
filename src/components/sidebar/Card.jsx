@@ -8,7 +8,7 @@ const Card = ( { category } )  => {
     return (
         <div className="Card">
             <button onClick={() => 
-            setSearchParams({category: category.id})
+            setSearchParams({category: category.name})
              }>
             
             {category.id}
