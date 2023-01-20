@@ -23,9 +23,11 @@ const Modal = ( { selectedImage, setSelectedImage } ) => {
             <div>
                 <div className="backdrop" onClick={handleClickClose} >
                     <img  src={selectedImage} alt="zoomed in image" />
-                    <button onClick={handleButtonClick}>
-                    Change Category
-                    </button> 
+                    <div className="backdropContent">
+                        <button onClick={handleButtonClick}>
+                        Change Category
+                        </button> 
+                    </div>
                 </div>
             
             </div>
