@@ -4,6 +4,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { v4 as uuidv4 } from 'uuid'
 import { useAuthContext } from '../contexts/AuthContext'
 import { db, storage } from '../firebase/config'
+import useViewCategories from "./useViewCategories";
 
 
 const useUploadImage = () => {
@@ -15,12 +16,40 @@ const useUploadImage = () => {
 
 	const { currentUser } = useAuthContext()
 
+  		    //fetching the categories of that user
+			  const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
+			  console.log("Upload Image CAT user" , categoriesQuery.data);
+
 	const upload = async (image, categoryRef) => {
 		// reset internal state
 		setError(null)
 		setIsError(null)
 		setIsSuccess(null)
 		setIsUploading(null)
+ 
+
+
+console.log('categoriesQuery.data-->',categoriesQuery.data)
+
+   // map returns a list of the names and includes checks if the category exists there
+   const categoryExists = categoriesQuery.data
+   .map(function(c){
+	   return c.name;
+   })
+   .includes(categoryRef.toLowerCase());
+
+    if (!categoryExists) {
+ //add document to collection categories
+ await addDoc(collection(db, 'categories'), {
+	name: categoryRef.toLowerCase(),
+	text: "",
+	user: currentUser.uid,
+	created: serverTimestamp(),
+})
+
+    }
+
+ 
 
 		try {
 
