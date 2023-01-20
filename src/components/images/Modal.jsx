@@ -4,6 +4,7 @@ import UpdateImageCategoryForm from "./UpdateImageCategoryForm";
 
 const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSelectedImageId } ) => {
     const [showUpdateImageCategoryForm, setShowUpdateImageCategoryForm] = useState(false)
+    const [isActive, setActive] = useState("false");
   
     const onImgCatUpdated = () => {
         setShowUpdateImageCategoryForm(false)
@@ -19,7 +20,9 @@ const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSel
         e.preventDefault();
         {e.stopPropagation(),
             console.log("HELP")
-        setShowUpdateImageCategoryForm(!showUpdateImageCategoryForm)}
+        setShowUpdateImageCategoryForm(!showUpdateImageCategoryForm)
+        setActive(!isActive);
+        }
     }
 
        //prevent closing from happening on the inner div
@@ -34,9 +37,9 @@ const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSel
     return (
  
             <div>
-                <div className="backdrop" onClick={handleClickClose} >
-                {/* <h1>{selectedImageUrl}</h1>
-                <h1>{selectedImageId}</h1> */}
+                {/* <div className="backdrop" onClick={handleClickClose} > */}
+                <div className={isActive ? "backdrop" : "backdropActive"} onClick={handleClickClose} >
+
                     <img  src={selectedImageUrl} alt="zoomed in image" />
                     <div className="backdropContent">
 
@@ -46,7 +49,7 @@ const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSel
                         </button> 
                        
                         {showUpdateImageCategoryForm && <>
-                                <div  onClick={handleForm}>
+                                <div className="form" onClick={handleForm}>
                                     <UpdateImageCategoryForm onImgCatUpdated={onImgCatUpdated} selectedImageUrl={selectedImageUrl} selectedImageId={selectedImageId} setShowUpdateImageCategoryForm={setShowUpdateImageCategoryForm}/>
                                 </div>
                                 </>
