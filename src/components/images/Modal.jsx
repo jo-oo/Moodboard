@@ -16,12 +16,11 @@ const Modal = ( { selectedImage, setSelectedImage } ) => {
     //prevent closing from happening on the inner div
     const handleButtonClick = (e) => {
         e.preventDefault();
-        console.log('The link was clicked.');
-        e.stopPropagation();
+        {e.stopPropagation(),
+            setShowUpdateImageCategoryForm(!showUpdateImageCategoryForm)}
+    
 
     }
-
-   
 
     return (
  
@@ -29,16 +28,17 @@ const Modal = ( { selectedImage, setSelectedImage } ) => {
                 <div className="backdrop" onClick={handleClickClose} >
                     <img  src={selectedImage} alt="zoomed in image" />
                     <div className="backdropContent">
-                        <button onClick={(e) => 
-                            {e.stopPropagation(),
-                            setShowUpdateImageCategoryForm(!showUpdateImageCategoryForm)}}>
+                        
+                        <button onClick={handleButtonClick}
+                            >
 							{showUpdateImageCategoryForm ? 'Cancel Edit' : 'Change category'}
                         </button> 
+                        
                         {showUpdateImageCategoryForm && <>
 						<hr className="my-4" />
+						    <UpdateImageCategoryForm onImgCatUpdated={onImgCatUpdated}/>
+					    </>}
 
-						<UpdateImageCategoryForm onImgCatUpdated={onImgCatUpdated}/>
-					</>}
                     </div>
                 </div>
             
