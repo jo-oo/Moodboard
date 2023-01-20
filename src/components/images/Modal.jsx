@@ -2,42 +2,58 @@ import "./modal.scss";
 import { useState } from "react";
 import UpdateImageCategoryForm from "./UpdateImageCategoryForm";
 
-const Modal = ( { selectedImage, setSelectedImage } ) => {
+const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSelectedImageId } ) => {
     const [showUpdateImageCategoryForm, setShowUpdateImageCategoryForm] = useState(false)
   
     const onImgCatUpdated = () => {
-		setShowUpdateImageCategoryForm(false)
-	}
-    //if we click somewhere outside the image (outside the div) then setImage is set to null so it won´t show no more
+        setShowUpdateImageCategoryForm(false)
+    }
+    //if we click somewhere outside the image (outside the div) then setImage is set to null so it won´t show no more and we can get a new image to look at
     const handleClickClose = (e) => {
-        setSelectedImage(null)
+        setSelectedImageUrl(null)
+        setSelectedImageId(null)
     }
 
     //prevent closing from happening on the inner div
     const handleButtonClick = (e) => {
         e.preventDefault();
         {e.stopPropagation(),
-            setShowUpdateImageCategoryForm(!showUpdateImageCategoryForm)}
-    
-
+            console.log("HELP")
+        setShowUpdateImageCategoryForm(!showUpdateImageCategoryForm)}
     }
+
+       //prevent closing from happening on the inner div
+       const handleForm = (e) => {
+        e.preventDefault();
+        {e.stopPropagation(),
+            console.log("HELP")
+        }
+    }
+
 
     return (
  
             <div>
                 <div className="backdrop" onClick={handleClickClose} >
-                    <img  src={selectedImage} alt="zoomed in image" />
+                {/* <h1>{selectedImageUrl}</h1>
+                <h1>{selectedImageId}</h1> */}
+                    <img  src={selectedImageUrl} alt="zoomed in image" />
                     <div className="backdropContent">
-                        
+
                         <button onClick={handleButtonClick}
                             >
-							{showUpdateImageCategoryForm ? 'Cancel Edit' : 'Change category'}
+                            {showUpdateImageCategoryForm ? 'Cancel Edit' : 'Change category'}
                         </button> 
-                        
+                       
                         {showUpdateImageCategoryForm && <>
-						<hr className="my-4" />
-						    <UpdateImageCategoryForm onImgCatUpdated={onImgCatUpdated}/>
-					    </>}
+                                <div  onClick={handleForm}>
+                                    <UpdateImageCategoryForm onImgCatUpdated={onImgCatUpdated} selectedImageUrl={selectedImageUrl} selectedImageId={selectedImageId} setShowUpdateImageCategoryForm={setShowUpdateImageCategoryForm}/>
+                                </div>
+                                </>
+                            
+                        }
+                       
+                      
 
                     </div>
                 </div>

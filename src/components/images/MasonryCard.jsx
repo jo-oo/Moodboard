@@ -1,6 +1,6 @@
 
 
-const MasonryCard = ( {data, setSelectedImage}) => {
+const MasonryCard = ( {data, setSelectedImageUrl, setSelectedImageId}) => {
    // console.log(props)
     return (
     <div 
@@ -11,8 +11,10 @@ const MasonryCard = ( {data, setSelectedImage}) => {
             }}>
 
                 <img src={data.url}  
-                        onClick={() =>setSelectedImage(data.url)
-      
+                        onClick={() => {
+                        setSelectedImageUrl(data.url)
+                        setSelectedImageId(data.id)
+                        }
                         } //passing in the value of the image we want to show
                     style={{
                 ...styles.mainPic,            
