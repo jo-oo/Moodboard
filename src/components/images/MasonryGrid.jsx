@@ -2,7 +2,7 @@ import MasonryCard from './MasonryCard.jsx';
 import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
 
 
-const MasonryGrid = ({ setSelectedImage }) => {
+const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId }) => {
     const { data } = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
     return (
 
@@ -15,7 +15,8 @@ const MasonryGrid = ({ setSelectedImage }) => {
                         <MasonryCard 
                             data={image} 
                             key={image.id} 
-                            setSelectedImage={setSelectedImage}
+                            setSelectedImageUrl={setSelectedImageUrl}
+                            setSelectedImageId={setSelectedImageId}
                             />
                         
                         // <MasonryCard size="medium" data={image} key={image} />

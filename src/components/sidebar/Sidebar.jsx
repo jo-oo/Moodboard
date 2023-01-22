@@ -7,7 +7,6 @@ import Cards from './Cards';
 const Sidebar = ( ) => {
     //fetching the categories of that user
     const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
-    console.log("Catwgory query for only the categories of the user" , categoriesQuery.data);
 
     return (
         <div className="SidebarContainer">

@@ -11,14 +11,10 @@ const useViewCategories = (options = {}) => { //Options are defaulted to an empt
     //to later check if user is authenticated to get to view the images
     const { currentUser } = useAuthContext()
 
-    console.log(currentUser.uid)
-    console.log("Options.categoryId= ",options.categoryId)
-
 	// create ref to collection 'categories'
     const collectionCategoriesRef = collection(db, 'categories')
                 
     const queryCategoriesKey = ['categories', { user: currentUser.uid }]	
-    
 
     //for quering collections by id
         const queryCategoryRef = query
