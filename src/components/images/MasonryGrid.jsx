@@ -1,6 +1,11 @@
 import MasonryCard from './MasonryCard.jsx';
 import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
 
+/*
+***TODO:
+map over card sizes to get an actual Masonry Grid
+****
+*/
 
 const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId }) => {
     const { data } = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})

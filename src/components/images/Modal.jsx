@@ -48,16 +48,14 @@ const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSel
                             {showUpdateImageCategoryForm ? 'Cancel Edit' : 'Change category'}
                         </button> 
                        
-                        {showUpdateImageCategoryForm && <>
+                        {showUpdateImageCategoryForm && 
+                            <>
                                 <div className="form" onClick={handleForm}>
                                     <UpdateImageCategoryForm onImgCatUpdated={onImgCatUpdated} selectedImageUrl={selectedImageUrl} selectedImageId={selectedImageId} setShowUpdateImageCategoryForm={setShowUpdateImageCategoryForm}/>
                                 </div>
-                                </>
-                            
+                            </>
                         }
                        
-                      
-
                     </div>
                 </div>
             

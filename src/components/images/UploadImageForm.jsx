@@ -20,13 +20,6 @@ const UploadImage = () => {
 
     // const maxSize= 4 * 1024 * 1024 // 4 mb
 
-	// const handleFileChange = (e) => {
-	// 	if (e.target.files[0]) {
-	// 		setImage(e.target.files[0])
-	// 	}
-	// 	console.log("File changed!", e.target.files[0])
-	// }
-
     	const handleFileChange = (e) => {
             let selected = e.target.files[0]
             if (!selected) {

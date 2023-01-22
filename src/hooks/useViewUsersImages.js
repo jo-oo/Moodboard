@@ -14,34 +14,10 @@ const useViewUsersImages = (options = {}) => { //Options are defaulted to an emp
     console.log(currentUser.uid)
 
 	// create ref to collection 'images'
-	const collectionRef = collection(db, 'images')
- 
-                /*
-                LATER IF YOU WANT TO RENDER NON USED IN PERSON THINGS...then use the fetchOnlyCurrentUserOption. Now it can be removed from Moodboard egentligen..
-                // create queryKey based on whether all images or only the current user's images are requested
-                //renders all images or empty list
-                const queryKey1 = options.fetchOnlyCurrentUser 
-                    ? ['images', { user: currentUser.uid }]
-                    : ['']
-                //READS AS:
-                const querykey2 = NULL;
-                    if(options.fetchOnlyCurrentUser=true){   
-                        querykey2  = ['images', { user: currentUser.uid }]
-                    }else{
-                        querykey2 = ['']
-                }
-                */
-                
+	const collectionRef = collection(db, 'images')         
 
     const queryKey = ['images', { user: currentUser.uid }]	
   
-    
-            // create query for collectionRef, order result in reverse cronological order
-            //USE THIS ONE FOR QUERY RENDERING OF NOT LOGGED IN USERS
-            /*const queryRef = options.fetchOnlyCurrentUser
-                ? query(collectionRef, where('user', '==', currentUser.uid), orderBy('created', 'desc'))
-                : query(collectionRef, orderBy('created', 'desc'))
-                */
         
     const queryRef = query
         (collectionRef, 
@@ -49,7 +25,6 @@ const useViewUsersImages = (options = {}) => { //Options are defaulted to an emp
         orderBy('created', 'desc')
     )
        
-
 	// run query for 'images', row 16
 	const imagesQuery = useFirestoreQueryData(queryKey, queryRef, {
 		idField: 'id',

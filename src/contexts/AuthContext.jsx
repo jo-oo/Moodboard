@@ -14,6 +14,16 @@ import { doc, setDoc } from 'firebase/firestore'
 import { auth, db, storage } from '../firebase/config'
 import BeatLoader from "react-spinners/BeatLoader"
 
+
+/**
+ * **
+ * TO DO: 
+ * 
+ * 
+ * move functions for serachParams to own context
+ */
+
+
 const AuthContext = createContext()
 
 //for our children to be able to use the contextValues and everything in

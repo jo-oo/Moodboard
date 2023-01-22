@@ -4,7 +4,7 @@ import useGetImage from '../hooks/useGetImage'
 const ImagePage = () => {
 	const { id } = useParams()
 	const { data: image, loading } = useGetImage(id)//skickar in id som jag får från useParams
-	//DETTA BETYDER ATT DU MÅSTE HA EN IMAGE-PAGE MED EN ROUTE SOM ETER /"din-bilds-id" Det är den som useParams hämtar från från routingen. Annars kommer det inte funka
+	//DETTA BETYDER ATT DU MÅSTE HA EN /"din-bilds-id" Det är den som useParams hämtar från från routingen. Annars kommer det inte funka
 
 	return (
 		<div>

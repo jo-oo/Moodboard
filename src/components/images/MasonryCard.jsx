@@ -1,7 +1,5 @@
-
-
 const MasonryCard = ( {data, setSelectedImageUrl, setSelectedImageId}) => {
-   // console.log(props)
+
     return (
     <div 
 

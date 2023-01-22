@@ -8,12 +8,13 @@ import useGetImage  from '../../hooks/useGetImage'
 
 /**
  * 
- * This function is not at all finished. Right now, it updates the category field if the image only on the Button "UPDATE me". But the handleSubmit-function is not working. 
+ * This function is not at all finished. Right now, it updates the category field if the image only on the Button "UPDATE ME". But the handleSubmit-function is not working. 
  * 
  * TO DO
  * 
 
- *          Get image.category:
+ *          Get image.category: 
+
  *          You will need to send {data} as an object through all the components where you now have taken out two values: selectedImageId, and selectedImageUrl. You will instead in Modal take out the parts from image data that you need to use there (map over it) and then in this component you will need to use the .catepory (YOU COULD MAYBE JUST CALL THE GETIMAGE-HOOK WITH THE ID THAT YOU ALREADY HAVE AND DONT DO ALL THIS STEPS)
  * 
  *  * Use GetCategories hook to do a similar check that you did in "Upload Image", where you check for if the category the user typed in already exists. 
@@ -21,6 +22,8 @@ import useGetImage  from '../../hooks/useGetImage'
  * If category does exist, AND if the category that the image already belongs to (getImage---image.catgeory) arrays length is = [0]--> Delete category in collection categories, AND Update category field on image 
  *  * If category does NOT exist, (either just abort: print  "catgeory not existing. choose another on"e ---OR --> user could be able to add category in in this stage..
  * 
+ * 
+ * CHECK CategoriesTestGrid from old bransch, on how to call on and render categories
 */
 
 
@@ -85,7 +88,7 @@ const UpdateImageCategoryForm = ( { onImgCatUpdated, selectedImageUrl, selectedI
 
                     <form onSubmit={handleSubmit}>
                 
-                        <button onClick= {updateCategory}>UPDATE med</button>
+                        <button onClick= {updateCategory}>UPDATE ME</button>
                         <div className="mt-1">
                             <label
                                 htmlFor="category"

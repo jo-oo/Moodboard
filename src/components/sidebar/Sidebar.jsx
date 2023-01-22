@@ -1,7 +1,6 @@
 import './sidebar.scss'
 import logo from '../../assets/logos/logo.svg'
 import useViewCategories from "../../hooks/useViewCategories";
-//import CategoryList from './CategoryList'
 import Cards from './Cards';
 
 const Sidebar = ( ) => {
@@ -18,7 +17,6 @@ const Sidebar = ( ) => {
                 </div>
                 <div className="Bottom">
                     <Cards categoriesQuery={categoriesQuery} />
-                    {/* <CategoryList /> */}
                 </div>
             </div>
         </div>
