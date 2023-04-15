@@ -9,7 +9,8 @@ const Sidebar = ( ) => {
     return (
         <>
             {/* SideBar Container */}
-            <div className="bg-zinc-200 border-r-2 border-[#CFC9C1] w-[130px] md:w-[180px] overflow-hidden">
+            {/* grid h-screen sticky top-0 IS needed for only the middle section to move / scroll */}
+            <div className="grid h-screen sticky top-0 bg-zinc-200 border-r-2 border-[#CFC9C1] w-[130px] md:w-[180px] overflow-y-scroll overflow-x-hidden">
                 
                 {/* Sidebar */}
                 <div className="p-3 md:p-4">
@@ -19,7 +20,7 @@ const Sidebar = ( ) => {
                             <img src={logo} className="" alt="Sidebar Logo"/>
                         </div>
                     </div>
-                <div className="mb-4 text-yellow-950 font-bold text-center md:text-[23px] text-[19px]  break-words">
+                <div className="mb-4 text-yellow-950 font-bold text-center md:text-[23px] text-[19px] break-words">
                     <p>Categories</p>
                 </div>
                     {/* Cards*/}
