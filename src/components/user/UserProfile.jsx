@@ -1,4 +1,4 @@
-import { useAuthContext } from '../../contexts/AuthContext' //to temporarily dispaly user
+import { useAuthContext } from '../../contexts/AuthContext' //to temporarily display user
 import { Link } from 'react-router-dom'
 import { BsPersonCircle } from 'react-icons/bs';
 import { useState } from 'react';
@@ -15,37 +15,37 @@ const UserProfile = () => {
     return (
         <>
             {/* Container for Profile section */}
-            <div className="p-2 ">
+            <div className="pt-2">
                     {
                         currentUser ? (
                             <>	
-                                {/* User is logged in */}
-                                <div className="text-center">
-                                    <p>Hello {userName}!</p>
-                                </div>
-            
-                                <div className='grid place-items-center'>
-                            
+                                <div className='grid place-items-center mt-1 overflow-x-hidden break-all'>
                                     {show ? (
                                         <>  
-
-                                        <div className='grid bg-blue-200 grid-cols-3 gap-1'>
-                                        
-                                        <BsPersonCircle 
-                                            size={30} 
-                                            onClick={toggle}
-                                        />
-                                            <div className="grid col-span-2">
-                                                <Link as={Link} to="/logout">Logout</Link>
-                                                <Link as={Link} to="/update-profile">Update Profile</Link>
-                                            </div>
-                                            </div>
+                                            <BsPersonCircle 
+                                                size={30} 
+                                                onClick={toggle}
+                                                className=""
+                                            />
+                                            <div className="text-center mt-2 mb-9">
+                                                <Link as={Link} to="/logout">
+                                                    <p className="mb-2">Logout</p>
+                                                </Link>
+                                                <Link as={Link} to="/update-profile">
+                                                    <p className="leading-4">Update profile</p>
+                                                </Link>
+                                            </div>   
                                         </>
                                         ) : (
                                             <>
+                                                {/* User is logged in */}
+                                                <div className="text-center mb-3 px-1 leading-5">
+                                                    <p>Hello {userName}!</p>
+                                                </div>
                                                 <BsPersonCircle 
                                                     size={40} 
                                                     onClick={toggle}
+                                                    className="mb-12"
                                                 />
                                             </>
                                         )
