@@ -13,9 +13,6 @@ const Cards = ({ categoriesQuery }) => {
 
     return ( 
         <div className="CardsBox"> 
-            <div className="Cards">
-                <FiPlus size={45}/>
-            </div>
             {categoriesQuery.data && categoriesQuery.data.map((category, i) => {
                 return (
                     <div key={i} className="Cards">
