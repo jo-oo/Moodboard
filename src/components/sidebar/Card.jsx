@@ -1,4 +1,3 @@
-import "./card.scss";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 const Card = ( { category } )  => {
@@ -6,16 +5,16 @@ const Card = ( { category } )  => {
     const {setSearchParams } = useAuthContext()
 
     return (
-        <div className="Card">
-            <button onClick={() => 
-            setSearchParams({category: category.name})
-             }>
-            
-            {category.id}
-          
-            <p>{category.heading}</p>
-            <p>{category.name}</p>
-        
+        <div className="">
+            <button 
+                onClick={() => 
+                setSearchParams({category: category.name})
+                }
+                className="focus:outline-none focus:inline-none
+                hover:border-1 hover:border-[#CFC9C1] leading-5 w-full py-3 bg-[#F6F7F7] text-yellow-950 border-[0.5px] border-[#CFC9C1] shadow-sm"
+                >      
+                <p>{category.heading}</p>
+                <p>{category.name}</p>
             </button> 
 
         </div>

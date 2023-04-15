@@ -1,4 +1,3 @@
-import './sidebar.scss'
 import logo from '../../assets/logos/logo.svg'
 import useViewCategories from "../../hooks/useViewCategories";
 import Cards from './Cards';
@@ -8,18 +7,28 @@ const Sidebar = ( ) => {
     const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
 
     return (
-        <div className="SidebarContainer">
-            <div className="Sidebar">
-                <div className="Top justify-center">
-                    <div>
-                        <img src={logo} className="Logo" alt="Sidebar Logo"/>
+        <>
+            {/* SideBar Container */}
+            <div className="bg-zinc-200 border-r-2 border-[#CFC9C1] w-[130px] md:w-[180px] overflow-hidden">
+                
+                {/* Sidebar */}
+                <div className="p-3 md:p-4">
+                    {/* Logo */}
+                    <div className="mb-5 px-5 md:px-9">
+                        <div>
+                            <img src={logo} className="" alt="Sidebar Logo"/>
+                        </div>
                     </div>
+                <div className="mb-4 text-yellow-950 font-bold text-center md:text-[23px] text-[19px]  break-words">
+                    <p>Categories</p>
                 </div>
-                <div className="Bottom">
+                    {/* Cards*/}
                     <Cards categoriesQuery={categoriesQuery} />
                 </div>
+
+                
             </div>
-        </div>
+        </>
     )
 }
 

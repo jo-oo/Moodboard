@@ -1,4 +1,3 @@
-import "./cards.scss";
 import Card from "./Card";
 import { FiPlus } from 'react-icons/fi';
 
@@ -12,16 +11,16 @@ const Cards = ({ categoriesQuery }) => {
 
 
     return ( 
-        <div className="CardsBox"> 
-            {categoriesQuery.data && categoriesQuery.data.map((category, i) => {
-                return (
-                    <div key={i} className="Cards">
-                        {/* send rendering of each category to a Card component. Send category data there */}
-                        <Card category={category} nr={i}/>
-                    </div>
-                );
-            })}
-        </div>
+        <>
+            {/* Cardsbox container div for all cards */}
+            <div className="grid gap-3 text-center"> 
+                {categoriesQuery.data && categoriesQuery.data.map((category, i) => {
+                    return (
+                        <Card category={category} key={i}/>      
+                    )
+                })}
+            </div>
+        </>
     );
 };
 
