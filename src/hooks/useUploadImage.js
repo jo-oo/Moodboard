@@ -20,6 +20,9 @@ const useUploadImage = () => {
 			  const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
 			  console.log("Upload Image CAT user" , categoriesQuery.data);
 
+	// generate a uuid for CATEGORY
+	const categoryUuid = uuidv4() // 1983793b7d-3hvvivd-ebfjed-3r34r490d
+
 	const upload = async (image, categoryRef) => {
 		// reset internal state
 		setError(null)
@@ -45,6 +48,7 @@ console.log('categoriesQuery.data-->',categoriesQuery.data)
 	text: "",
 	user: currentUser.uid,
 	created: serverTimestamp(),
+	id: categoryUuid
 })
 
     }
