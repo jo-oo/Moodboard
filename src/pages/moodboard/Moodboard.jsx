@@ -33,8 +33,10 @@ const Moodboard = () => {
                          />
                         }
                        
-
-                        <MasonryGrid setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}/>
+                        { !showUploadForm &&
+                            <MasonryGrid setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}/>
+                        }
+                        
 
                         {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
                          {selectedImageUrl && 
