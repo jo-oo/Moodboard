@@ -11,6 +11,11 @@ import Modal from "../../components/images/Modal";
 const Moodboard = () => {
     const [selectedImageUrl, setSelectedImageUrl] = useState(null)
     const [selectedImageId, setSelectedImageId] = useState(null)
+    const [showUploadForm, setShowUploadForm] = useState(null)
+
+    const openUploadForm= () => {
+        setShowUploadForm(true);
+      };
 
 
     return (
@@ -21,9 +26,21 @@ const Moodboard = () => {
                 <div className="MainMoodboard">
                     <div className="Middle">
 
+                        {showUploadForm  &&
+                         <UploadImageForm 
+                            showUploadForm={showUploadForm}
+                            setShowUploadForm={setShowUploadForm}
+                         />
+                        }
+                       
+
                         <MasonryGrid setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}/>
+
                         {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
-                         {selectedImageUrl && <Modal selectedImageUrl={selectedImageUrl}  setSelectedImageUrl={setSelectedImageUrl} selectedImageId={selectedImageId} setSelectedImageId={setSelectedImageId}/>}
+                         {selectedImageUrl && 
+                            <Modal 
+                                selectedImageUrl={selectedImageUrl}  setSelectedImageUrl={setSelectedImageUrl} selectedImageId={selectedImageId} setSelectedImageId={setSelectedImageId}
+                            />}
 
                         {/* <h2>Here is getImages-hook</h2> */}
                         {/* WHEN USING GetImages() which uses useStreamCollection */}
@@ -38,12 +55,17 @@ const Moodboard = () => {
                             ))}
                         </div>  */}
                             
-                        <UploadImageForm />
+                     
 
                     </div>
+
+
                     <div className="Right">
                         <div>
-                        <FiPlus size={45}/>
+                        <FiPlus 
+                            size={45}
+                            onClick={openUploadForm}
+                        />
                         </div>  
                     </div>
                 </div>

@@ -5,12 +5,20 @@ import React, { useState, useRef } from 'react'
 import Progressbar from './Progressbar'
 import useUploadImage from '../../hooks/useUploadImage'
 
-const UploadImage = () => {
+const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 	const [image, setImage] = useState(null)
 	const [message, setMessage] = useState()
     const [error, setError] = useState(null)
 	const uploadImage = useUploadImage()
     const inputRef = useRef()
+
+    console.log("set ", showUploadForm)
+    //const [showUploadForm, setShowUploadForm] = useState(null)
+
+    const closeUploadForm = () => {
+        setShowUploadForm(false)
+       // reset(); 
+      };
 
     const fileTypes= [
         'image/gif','image/jpeg',
@@ -51,7 +59,7 @@ const UploadImage = () => {
 	return (
 		<>
 			
-			<div className="nameContainer flex flex-col items-center min-h-screen sm:justify-center p-8">
+			<div className="nameContainer flex flex-col items-center min-h-screen sm:justify-center px-8 mt-10">
                 <div className="nameFormBox w-full px-10 py-12 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
             
                     <div className="Logo flex flex-col items-center justify-center mt-2">
@@ -129,9 +137,14 @@ const UploadImage = () => {
 
 
                     
-                        <div className="flex items-center justify-end mt-8 mb-2">
+                        <div className="flex items-end justify-end mt-8 mb-2">
                             <Button disabled={uploadImage.isUploading} type="submit" value={`UPLOAD`}/>
 							<Button type="reset" value={`RESET`}/>
+                            <div 
+                                className="ml-4 font-bold"
+                                onClick={closeUploadForm} >
+                                <p>CLOSE</p>
+                            </div>
                         </div>
                     </form>
 
