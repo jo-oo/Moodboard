@@ -48,7 +48,7 @@ console.log('categoriesQuery.data-->',categoriesQuery.data)
 	text: "",
 	user: currentUser.uid,
 	created: serverTimestamp(),
-	id: categoryUuid
+	//id: categoryUuid
 })
 
     }
@@ -101,7 +101,7 @@ console.log('categoriesQuery.data-->',categoriesQuery.data)
 				type: image.type,
 				size: image.size,
 				user: currentUser.uid,
-				id: uuid,
+				//id: uuid,
 				url,
 				category: categoryRef.toLowerCase(),
 			})
