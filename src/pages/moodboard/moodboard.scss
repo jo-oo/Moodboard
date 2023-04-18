@@ -2,12 +2,14 @@
     display: grid;
     min-width: 100vw;
     min-height: 100vh;
+    
 }
 
 .Moodboard {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     justify-content: space-between;
+    overflow-x: hidden
 }
   
 .MainMoodboard {
