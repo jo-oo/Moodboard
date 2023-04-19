@@ -103,7 +103,7 @@ const LoginForm = () => {
                         </div>
                     
                  
-                        <div className="flex flex-col xs:flex-row items-center justify-between mt-8 mb-2 xs: m-2">
+                        <div className="flex flex-col xxs:flex-row items-center justify-between mt-8 mb-2 xxs: m-2">
                             <div className="text-sm leading-4">
                                 <p className="text-gray-600 hover:text-gray-900">
                                     Don´t have an account?
