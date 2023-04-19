@@ -5,10 +5,6 @@ import UpdateImageCategoryForm from "./UpdateImageCategoryForm";
 const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSelectedImageId } ) => {
     const [showUpdateImageCategoryForm, setShowUpdateImageCategoryForm] = useState(false)
     const [isActive, setActive] = useState("false");
-  
-    // const closeForm = () => {
-    //     setShowUpdateImageCategoryForm(false)
-    // }
     
     //if we click somewhere outside the image (outside the div) then setImage is set to null so it won´t show no more and we can get a new image to look at
     const handleClickClose = (e) => {
@@ -52,7 +48,9 @@ const Modal = ( { selectedImageUrl, setSelectedImageUrl, selectedImageId, setSel
                         {showUpdateImageCategoryForm && 
                             <>
                                 <div className="form" onClick={handleForm}>
-                                    <UpdateImageCategoryForm selectedImageUrl={selectedImageUrl} selectedImageId={selectedImageId} setShowUpdateImageCategoryForm={setShowUpdateImageCategoryForm}/>
+                                    <UpdateImageCategoryForm  selectedImageId={selectedImageId} showUpdateImageCategoryForm={showUpdateImageCategoryForm}
+                                    setShowUpdateImageCategoryForm={setShowUpdateImageCategoryForm}
+                                    handleClickClose={handleClickClose}/>
                                 </div>
                             </>
                         }
