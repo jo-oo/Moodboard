@@ -59,8 +59,8 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 	return (
 		<>
 			
-			<div className="nameContainer flex flex-col items-center min-h-screen sm:justify-center px-8 mt-10">
-                <div className="nameFormBox w-full px-10 py-12 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
+			<div className="nameContainer flex flex-col items-center min-h-screen sm:justify-center pl-4 xs:pl-8 xs:pr-8 mt-10">
+                <div className="nameFormBox w-[11rem] xs:w-full px-3 xs:px-10 py-12 overflow-hidden bg-white shadow-md sm:max-w-md sm:rounded-lg">
             
                     <div className="Logo flex flex-col items-center justify-center mt-2">
                         <div className='w-11'>
@@ -137,11 +137,11 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 
 
                     
-                        <div className="flex items-end justify-end mt-8 mb-2">
+                        <div className="xs:flex items-end justify-end mt-8 mb-2">
                             <Button disabled={uploadImage.isUploading} type="submit" value={`UPLOAD`}/>
 							<Button type="reset" value={`RESET`}/>
                             <div 
-                                className="ml-4 font-bold"
+                                className="ml-4 mt-1 xs:mt-0 font-bold"
                                 onClick={closeUploadForm} >
                                 <p>CLOSE</p>
                             </div>
