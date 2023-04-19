@@ -182,15 +182,17 @@ const UpdateProfileForm = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex items-center justify-end mt-8 mb-2">
-                            <p
-                                className="text-sm text-gray-600 hover:text-gray-900"
-                            >
-                                Changed my mind
-                                <Link to="/">Go to Moodbpard</Link>
-                            </p>
+
+                        <div className="flex flex-col xxs:flex-row items-center justify-between mt-8 mb-2 xxs: m-2">
+                            <div className="text-sm leading-4">
+                                <p className="text-gray-600 hover:text-gray-900">
+                                    Changed my mind
+                                </p>
+                                <Link to="/"> Go to Moodboard</Link>
+                            </div>
                             <Button disabled={loading} type="submit" value={`UPDATE PROFILE`}/>
                         </div>
+
                     </form>
                     
                 </div>
