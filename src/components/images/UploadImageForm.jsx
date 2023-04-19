@@ -12,12 +12,8 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 	const uploadImage = useUploadImage()
     const inputRef = useRef()
 
-    console.log("set ", showUploadForm)
-    //const [showUploadForm, setShowUploadForm] = useState(null)
-
     const closeUploadForm = () => {
         setShowUploadForm(false)
-       // reset(); 
       };
 
     const fileTypes= [
@@ -48,6 +44,8 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 		e.preventDefault()
 
 		uploadImage.upload(image,inputRef.current.value)
+   
+
 	}
 
 	const handleReset = () => {
@@ -55,6 +53,7 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 		setMessage(null)
 	}
 	console.log("Uploading...", uploadImage.progress)
+    console.log("Upl..", uploadImage)
 
 	return (
 		<>
@@ -72,16 +71,6 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
                         <h3 className="text-2xl font-semibold mt-2">Upload image</h3>
                         <p className='text-base'>Choose your file</p>
                     </div>
-
-                    {error && (
-                        //send error to Alert component
-                        <Alert error={error} />
-                    )} 
-
-					{/* {message && (
-                        //send message to Alert component
-                        <Alert message={message} />
-                    )} */}
 
 				
                     <form onSubmit={handleSubmit} onReset={handleReset}>
@@ -112,13 +101,12 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
                             </div>
                         </div>
 
-                        
                         <div className="mt-4">
                             <label
                                 htmlFor="category"
                                 className="block text-sm font-medium text-gray-700"
                             >
-                                Category
+                                Choose an existing category, or add a new
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
@@ -134,15 +122,12 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
                             </div>
                         </div>
 
-
-
-                    
                         <div className="xs:flex items-end justify-end mt-8 mb-2">
                             <Button disabled={uploadImage.isUploading} type="submit" value={`UPLOAD`}/>
 							<Button type="reset" value={`RESET`}/>
                             <div 
                                 className="ml-4 mt-1 xs:mt-0 font-bold"
-                                onClick={closeUploadForm} >
+                                onClick={closeUploadForm}>
                                 <p>CLOSE</p>
                             </div>
                         </div>
@@ -154,8 +139,20 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 							label={`${uploadImage.progress}%`}
 						/>
 					)}
-				
+
+                    {uploadImage.isError && 
+                        <div className='flex justify-center'>
+                            <p className="text-lg font-bold text-red-600">{uploadImage.error.message} :-(</p>
+                        </div>  
+                    }
+                    
+                    {uploadImage.isSuccess && 
+                        <div className='flex justify-center'>
+                            <p className="text-lg font-bold text-blue-600">Image uploaded! :-)</p>
+                        </div>  
+                    }
                 </div>
+            
             </div>
 			
 		</>
