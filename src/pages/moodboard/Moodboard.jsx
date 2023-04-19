@@ -19,62 +19,65 @@ const Moodboard = () => {
 
 
     return (
-        <div className="Container">
+        <>
+            {/* Container */}
+            <div className="grid min-w-full min-h-full">
+                {/* Moodboard */}
+                <div className="Moodboard">
+                    <Sidebar/>
+                    <div className="MainMoodboard">
+                        <div className="Middle">
 
-            <div className="Moodboard">
-                <Sidebar/>
-                <div className="MainMoodboard">
-                    <div className="Middle">
+                            {showUploadForm  &&
+                            <UploadImageForm 
+                                showUploadForm={showUploadForm}
+                                setShowUploadForm={setShowUploadForm}
+                            />
+                            }
+                        
+                            { !showUploadForm &&
+                                <MasonryGrid setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}/>
+                            }
+                            
 
-                        {showUploadForm  &&
-                         <UploadImageForm 
-                            showUploadForm={showUploadForm}
-                            setShowUploadForm={setShowUploadForm}
-                         />
-                        }
-                       
-                        { !showUploadForm &&
-                            <MasonryGrid setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}/>
-                        }
+                            {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
+                            {selectedImageUrl && 
+                                <Modal 
+                                    selectedImageUrl={selectedImageUrl}  setSelectedImageUrl={setSelectedImageUrl} selectedImageId={selectedImageId} setSelectedImageId={setSelectedImageId}
+                                />}
+
+                            {/* <h2>Here is getImages-hook</h2> */}
+                            {/* WHEN USING GetImages() which uses useStreamCollection */}
+                            {/*{loading && (<p>Loading..</p>) }
+                            <div>
+                                {!loading && 
+                                images.map((image, index) => (
+                                    <div key={index}>
+                                        <p>{image.name} "type:" {image.type} "path:" {image.path} </p> 
+                                        <img src={image.url} />
+                                    </div>
+                                ))}
+                            </div>  */}
+                                
                         
 
-                        {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
-                         {selectedImageUrl && 
-                            <Modal 
-                                selectedImageUrl={selectedImageUrl}  setSelectedImageUrl={setSelectedImageUrl} selectedImageId={selectedImageId} setSelectedImageId={setSelectedImageId}
-                            />}
+                        </div>
 
-                        {/* <h2>Here is getImages-hook</h2> */}
-                        {/* WHEN USING GetImages() which uses useStreamCollection */}
-                        {/*{loading && (<p>Loading..</p>) }
-                         <div>
-                            {!loading && 
-                            images.map((image, index) => (
-                                <div key={index}>
-                                    <p>{image.name} "type:" {image.type} "path:" {image.path} </p> 
-                                    <img src={image.url} />
-                                </div>
-                            ))}
-                        </div>  */}
-                            
-                     
 
+                        <div className="Right">
+                            <div>
+                            <FiPlus 
+                                size={45}
+                                onClick={openUploadForm}
+                            />
+                            </div>  
+                        </div>
                     </div>
-
-
-                    <div className="Right">
-                        <div>
-                        <FiPlus 
-                            size={45}
-                            onClick={openUploadForm}
-                        />
-                        </div>  
-                    </div>
+                    <Notes/>
                 </div>
-                <Notes/>
-            </div>
 
-        </div>
+            </div>
+        </>
     )
 }
 
