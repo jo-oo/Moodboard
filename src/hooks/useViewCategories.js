@@ -23,8 +23,7 @@ const useViewCategories = (options = {}) => { //Options are defaulted to an empt
         where('user', '==', currentUser.uid)  //skickar med variabler
     )
         
-
-	// run query for 'categories', row 16
+	// run query for 'categories', row 15
 	const categoriesQuery = useFirestoreQueryData(queryCategoriesKey, queryCategoryRef, {
 		idField: 'id',
 		subscribe: true,

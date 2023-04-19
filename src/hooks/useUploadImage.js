@@ -16,9 +16,8 @@ const useUploadImage = () => {
 
 	const { currentUser } = useAuthContext()
 
-  		    //fetching the categories of that user
-			  const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
-			  console.log("Upload Image CAT user" , categoriesQuery.data);
+	//fetching the categories of that user
+	const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
 
 	// generate a uuid for CATEGORY
 	const categoryUuid = uuidv4() // 1983793b7d-3hvvivd-ebfjed-3r34r490d
@@ -29,33 +28,25 @@ const useUploadImage = () => {
 		setIsError(null)
 		setIsSuccess(null)
 		setIsUploading(null)
- 
 
+		// map returns a list of the names and includes checks if the category exists there
+		const categoryExists = categoriesQuery.data.map(function(c) {
+			return c.name;
+		})
+		.includes(categoryRef.toLowerCase());
 
-console.log('categoriesQuery.data-->',categoriesQuery.data)
+		if (!categoryExists) {
+			//add document to collection categories
+			await addDoc(collection(db, 'categories'), {
+				name: categoryRef.toLowerCase(),
+				text: "",
+				user: currentUser.uid,
+				created: serverTimestamp(),
+				//id: categoryUuid
+			})
+		}
 
-   // map returns a list of the names and includes checks if the category exists there
-   const categoryExists = categoriesQuery.data
-   .map(function(c){
-	   return c.name;
-   })
-   .includes(categoryRef.toLowerCase());
-
-    if (!categoryExists) {
- //add document to collection categories
- await addDoc(collection(db, 'categories'), {
-	name: categoryRef.toLowerCase(),
-	text: "",
-	user: currentUser.uid,
-	created: serverTimestamp(),
-	//id: categoryUuid
-})
-
-    }
-
- 
-
-		try {
+ 		try {
 
 			// generate a uuid for the file
 			const uuid = uuidv4() // 1983793b7d-3hvvivd-ebfjed-3r34r490d
@@ -90,8 +81,6 @@ console.log('categoriesQuery.data-->',categoriesQuery.data)
 
 			// create reference to db-collection 'images'
 			const collectionRef = collection(db, 'images')
-		
-			console.log(image);
 
 			// create document in db for the uploaded image
 			await addDoc(collectionRef, {
@@ -105,8 +94,6 @@ console.log('categoriesQuery.data-->',categoriesQuery.data)
 				url,
 				category: categoryRef.toLowerCase(),
 			})
-
-	
 			setProgress(null)
 			setIsSuccess(true)
 
@@ -118,7 +105,6 @@ console.log('categoriesQuery.data-->',categoriesQuery.data)
 
 		} finally {
 			setIsUploading(false)
-
 		}
 	}
 

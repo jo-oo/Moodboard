@@ -1,6 +1,7 @@
 /*Streams for updates in real time*/
 import { useEffect, useState } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
+//db instance from firebase config file:
 import { db } from '../firebase/config'
 
 const useStreamDocument = (col, id) => {

@@ -7,8 +7,6 @@ const Cards = ({ categoriesQuery }) => {
     if (categoriesQuery.isError) {
         console.log("Error query", categoriesQuery.error.message)  
     }
-    console.log("Category is this id" + [categoriesQuery]);
-
 
     return ( 
         <>

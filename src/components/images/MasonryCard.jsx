@@ -21,14 +21,15 @@ const MasonryCard = ( {data, setSelectedImageUrl, setSelectedImageId}) => {
     )
 }
 
-//lägg till img-wrap på styles card
+/* lägg till img-wrap på styles card
+*/ 
 const styles = {
     card: {
         margin: '15px 10px',
         padding: 0,
         borderRadius: '10px',
         backgroundColor: 'lightgrey',
-        position: 'relative', //nya 
+        //position: 'relative', //nya 
         overflow: 'hidden',
     },
     mainPic: {
