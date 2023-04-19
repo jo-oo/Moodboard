@@ -8,29 +8,42 @@ map over card sizes to get an actual Masonry Grid
 */
 
 const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId }) => {
-    const { data } = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
+    const { data, isLoading} = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
+
     return (
+        
+            <div className='h-full sticky'> {/*this centers the Masonry-div inside the "Middle-div" */}
+           
+                <div style={styles.pin_container}>
 
-        <div className='h-full sticky'> {/*for some reason this centerd the MAsonry-div inside the 
-        "Middle-div" */}
-            <div style={styles.pin_container}>
-                {data &&
-			        data.map(image => (
-                
-                        <MasonryCard 
-                            data={image} 
-                            key={image.id} 
-                            setSelectedImageUrl={setSelectedImageUrl}
-                            setSelectedImageId={setSelectedImageId}
-                            />
-                        
-                        // <MasonryCard size="medium" data={image} key={image} />
-                        //<MasonryCard size="large" data={image} key={image.url} /></>
-		            ))
-                } 
+                { isLoading && (
+                    <p>loading</p>
+                )}
+
+                { data && data.length == 0? 
+                    (
+                    <>There are no images in this category. :-( </>
+
+                ) : ( 
+                    data &&
+                        data.map(image => (
+                    
+                            <MasonryCard 
+                                data={image} 
+                                key={image.id} 
+                                setSelectedImageUrl={setSelectedImageUrl}
+                                setSelectedImageId={setSelectedImageId}
+                                />
+                            
+                            // <MasonryCard size="medium" data={image} key={image} />
+                            //<MasonryCard size="large" data={image} key={image.url} /></>
+                        ))
+                    )}
+
+                    
+                </div>
+      
             </div>
-        </div>
-
     )
 }
 
@@ -41,11 +54,11 @@ const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId }) => {
 
 const styles = {
     pin_container: {
-        margin: 0,
+        margin: 5,
         padding: 0,
         width: '60vw',
         display: 'grid',
-        //flex: 1, //från nya 
+        flex: 1, //från nya 
         gridTemplateColumns: 'repeat(auto-fill, 200px)', //put as many 172 px cards in one row that can fit into the container. 250px is the recommended  value
         gridAutoRows: '10px',
         position: 'absolute',
