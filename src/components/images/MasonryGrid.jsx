@@ -1,5 +1,5 @@
 import MasonryCard from './MasonryCard.jsx';
-import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
+
 
 /*
 ***TODO:
@@ -7,43 +7,26 @@ map over card sizes to get an actual Masonry Grid
 ****
 */
 
-const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId }) => {
-    const { data, isLoading} = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
+const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId}) => {
 
     return (
-        
-            <div className='h-full sticky'> {/*this centers the Masonry-div inside the "Middle-div" */}
-           
-                <div style={styles.pin_container}>
-
-                { isLoading && (
-                    <p>loading</p>
-                )}
-
-                { data && data.length == 0? 
-                    (
-                    <>There are no images in this category. :-( </>
-
-                ) : ( 
-                    data &&
-                        data.map(image => (
-                    
-                            <MasonryCard 
-                                data={image} 
-                                key={image.id} 
-                                setSelectedImageUrl={setSelectedImageUrl}
-                                setSelectedImageId={setSelectedImageId}
-                                />
-                            
+        <div className='h-full sticky'> {/*this centers the Masonry-div inside the "Middle-div" */}
+            <div style={styles.pin_container}>
+                {  data &&
+                    data.map(image => (
+                        <MasonryCard 
+                            data={image} 
+                            key={image.id} 
+                            setSelectedImageUrl={setSelectedImageUrl}
+                            setSelectedImageId={setSelectedImageId}
+                        />
+                        
                             // <MasonryCard size="medium" data={image} key={image} />
-                            //<MasonryCard size="large" data={image} key={image.url} /></>
-                        ))
-                    )}
-
-                    
-                </div>
-      
+                        //<MasonryCard size="large" data={image} key={image.url} /></>
+                    ))
+                } 
             </div>
+        </div>
     )
 }
 
