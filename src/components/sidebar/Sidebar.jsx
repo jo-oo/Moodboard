@@ -1,10 +1,8 @@
 import logo from '../../assets/logos/logo.svg'
-import useViewCategories from "../../hooks/useViewCategories";
 import Cards from './Cards';
 import UserProfile from '../user/UserProfile';
 
 const Sidebar = ( { categoriesQuery} ) => {
-    
 
     return (
         <>
@@ -24,18 +22,13 @@ const Sidebar = ( { categoriesQuery} ) => {
                     <p>Categories</p>
                 </div>
                     {/* Cards*/}
-        
-                        <Cards categoriesQuery={categoriesQuery} />
-           
-      
-                  
+                    <Cards 
+                        categoriesQuery={categoriesQuery} 
+                    />
                 </div>
                 <div className="visible md:hidden ">
-                <UserProfile />
-                </div>
-               
-
-                
+                    <UserProfile />
+                </div> 
             </div>
         </>
     )
