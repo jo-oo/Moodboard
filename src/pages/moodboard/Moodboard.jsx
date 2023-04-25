@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FiPlus } from 'react-icons/fi';
+import { doc, deleteDoc } from "firebase/firestore";
+import { db, storage } from '../../firebase/config';
 
 import "./moodboard.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -35,14 +37,40 @@ const Moodboard = () => {
     //Get the current category
     const { category  } = useAuthContext()
  
+    let myCategory = categoriesQuery.data && categoriesQuery.data.filter(c => c.name == category)[0];
     let categoryExists = categoriesQuery.data && categoriesQuery.data.filter(c => c.name == category).length >= 1;
  
     console.log("is a match???", categoryExists)
-
+    console.log("My cat", myCategory)
 
     const openUploadForm = () => {
         setShowUploadForm(true);
     };
+
+    console.log("jbkjl", categoriesQuery)
+
+
+    //updates document in collection "images"
+    const deleteCategory = async () => {
+        console.log("knapp!")
+        await deleteDoc(doc(db, 'categories', myCategory.id), { 
+            //category: category
+
+        })
+   
+        console.log("Image updated!")
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()      
+        deleteCategory()
+    }
+
+
+
+
+
+
 
     return (
         <>
@@ -84,6 +112,7 @@ const Moodboard = () => {
                                 ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
                                     <>
                                         <p>Den här kategorin har inga bilder. Lägg till bilder eller radera kategorin</p>
+                                        <button type="submit" onClick= {handleSubmit}>RADERA KATEGORI</button>
                                     </>
                                 ) : !showUploadForm && imagesByCategoryQuery.data && (
                                     <MasonryGrid 
