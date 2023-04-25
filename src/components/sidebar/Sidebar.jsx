@@ -3,9 +3,8 @@ import useViewCategories from "../../hooks/useViewCategories";
 import Cards from './Cards';
 import UserProfile from '../user/UserProfile';
 
-const Sidebar = ( ) => {
-    //fetching the categories of that user
-    const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
+const Sidebar = ( { categoriesQuery} ) => {
+    
 
     return (
         <>
@@ -25,7 +24,11 @@ const Sidebar = ( ) => {
                     <p>Categories</p>
                 </div>
                     {/* Cards*/}
-                    <Cards categoriesQuery={categoriesQuery} />
+        
+                        <Cards categoriesQuery={categoriesQuery} />
+           
+      
+                  
                 </div>
                 <div className="visible md:hidden ">
                 <UserProfile />

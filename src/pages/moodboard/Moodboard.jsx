@@ -8,20 +8,40 @@ import UploadImageForm from "../../components/images/UploadImageForm";
 import MasonryGrid from "../../components/images/MasonryGrid";
 import Modal from "../../components/images/Modal";
 import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
+import { useAuthContext } from '../../contexts/AuthContext'
+import useViewCategories from "../../hooks/useViewCategories";
 
 const Moodboard = () => {
     const [selectedImageUrl, setSelectedImageUrl] = useState(null)
     const [selectedImageId, setSelectedImageId] = useState(null)
     const [showUploadForm, setShowUploadForm] = useState(null)
 
-    //Get users images in category
-    const { data, isLoading} = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
+    // Get users images in category
+    const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
+
+     console.log("MOOD BOARD ImagesQuery", imagesByCategoryQuery)
+ 
+    //fetching the categories of that user
+    const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
+    console.log("Moodboard categoriesQuery: ", categoriesQuery)
+
+    if (categoriesQuery.isError) {
+        console.log("Error query", categoriesQuery.error.message)  
+    }
+    if (imagesByCategoryQuery.isError) {
+        console.log("Error query", imagesByCategoryQuery.error.message)  
+    }
+    
+    //Get the current category
+    const { category  } = useAuthContext()
+ 
+    let categoryExists = categoriesQuery.data && categoriesQuery.data.filter(c => c.name == category).length >= 1;
+    console.log(categoryExists)
 
 
-    const openUploadForm= () => {
+    const openUploadForm = () => {
         setShowUploadForm(true);
-      };
-
+    };
 
     return (
         <>
@@ -30,7 +50,9 @@ const Moodboard = () => {
                 {/* Moodboard */}
                 <div className="Moodboard">
 
-                    <Sidebar/>
+                    <Sidebar
+                        categoriesQuery={categoriesQuery}
+                    />
 
                     <div className="MainMoodboard">
                         <div className="Middle">
@@ -42,26 +64,30 @@ const Moodboard = () => {
                                 />
                             }
 
-                            { isLoading && (
+                            { true && (
                                 <p>loading</p>
                             )}
                         
-                            { !showUploadForm && data && data.length == 0? 
+                        { true &&
+                        
+                        <p>
+                            NEEEJJJJ
+                        </p>
+                    
+                        }
+                            { !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0? 
                                     (
                                     <>
                                         There are no images in this category. :-( 
                                      </>
-                
-                                ) : ( 
-                            
-                                <MasonryGrid 
-                                    setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}
-                                    data={data}
-                                    isLoading={isLoading}
-                                />
-                            )
-                            }
-
+                                ) : (  
+                                    <MasonryGrid 
+                                        setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}
+                                        data={imagesByCategoryQuery.data}
+                                    />
+                                
+                                )
+                            } 
                             
                             {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
                             {selectedImageUrl && 
@@ -78,7 +104,7 @@ const Moodboard = () => {
                                 />
                             </div>  
                         </div>
-                    </div>
+                    </div> 
 
                     <Notes/>
 

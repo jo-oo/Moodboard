@@ -7,7 +7,7 @@ map over card sizes to get an actual Masonry Grid
 ****
 */
 
-const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId}) => {
+const MasonryGrid = ({ setSelectedImageUrl, setSelectedImageId, data}) => {
 
     return (
         <div className='h-full sticky'> {/*this centers the Masonry-div inside the "Middle-div" */}
