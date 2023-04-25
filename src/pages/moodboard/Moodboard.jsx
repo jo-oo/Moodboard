@@ -26,7 +26,7 @@ const Moodboard = () => {
     console.log("Moodboard categoriesQuery: ", categoriesQuery)
 
     if (categoriesQuery.isError) {
-        console.log("Error query", categoriesQuery.error.message)  
+        console.log("Error query", categoriesQuery.error.message) 
     }
     if (imagesByCategoryQuery.isError) {
         console.log("Error query", imagesByCategoryQuery.error.message)  
@@ -36,7 +36,8 @@ const Moodboard = () => {
     const { category  } = useAuthContext()
  
     let categoryExists = categoriesQuery.data && categoriesQuery.data.filter(c => c.name == category).length >= 1;
-    console.log(categoryExists)
+ 
+    console.log("is a match???", categoryExists)
 
 
     const openUploadForm = () => {
@@ -64,31 +65,28 @@ const Moodboard = () => {
                                 />
                             }
 
-                            { true && (
+                            { imagesByCategoryQuery.isLoading && (
                                 <p>loading</p>
                             )}
                         
-                        { true &&
-                        
-                        <p>
-                            NEEEJJJJ
-                        </p>
-                    
-                        }
-                            { !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0? 
-                                    (
+    
+                            {  !imagesByCategoryQuery.isLoading && !categoryExists ? (
+                                    <div>
+                                        <p>Det finns inte någon sådan kategori</p> 
+                                    </div>               
+                                ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
                                     <>
-                                        There are no images in this category. :-( 
-                                     </>
-                                ) : (  
+                                        <p>Den här kategorin har inga bilder. Lägg till bilder eller radera kategorin</p>
+                                    </>
+                                ) : !showUploadForm && imagesByCategoryQuery.data && (
                                     <MasonryGrid 
-                                        setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}
-                                        data={imagesByCategoryQuery.data}
+                                    setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}
+                                    data={imagesByCategoryQuery.data}
                                     />
-                                
-                                )
-                            } 
                             
+                                )
+                            }  
+
                             {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
                             {selectedImageUrl && 
                                 <Modal 
