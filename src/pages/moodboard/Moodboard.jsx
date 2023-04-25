@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FiPlus } from 'react-icons/fi';
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc, collection, deleteDoc, addDoc, serverTimestamp } from "firebase/firestore";
 import { db, storage } from '../../firebase/config';
 
 import "./moodboard.scss";
@@ -20,8 +20,6 @@ const Moodboard = () => {
 
     // Get users images in category
     const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
-
-     console.log("MOOD BOARD ImagesQuery", imagesByCategoryQuery)
  
     //fetching the categories of that user
     const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
@@ -35,42 +33,46 @@ const Moodboard = () => {
     }
    
     //Get the current category
-    const { category  } = useAuthContext()
- 
+    const { category, currentUser  } = useAuthContext()
+    //find current category amongst users categories
     let myCategory = categoriesQuery.data && categoriesQuery.data.filter(c => c.name == category)[0];
+    //check if current category amongst users categories exists
     let categoryExists = categoriesQuery.data && categoriesQuery.data.filter(c => c.name == category).length >= 1;
- 
-    console.log("is a match???", categoryExists)
-    console.log("My cat", myCategory)
+
 
     const openUploadForm = () => {
         setShowUploadForm(true);
     };
 
-    console.log("jbkjl", categoriesQuery)
 
-
-    //updates document in collection "images"
+    //updates document in collection "categories"
     const deleteCategory = async () => {
         console.log("knapp!")
         await deleteDoc(doc(db, 'categories', myCategory.id), { 
-            //category: category
-
         })
-   
         console.log("Image updated!")
     }
 
-    const handleSubmit = async (e) => {
+    const handleDeleteCat= async (e) => {
         e.preventDefault()      
         deleteCategory()
     }
 
+    const addCategory = async () => {
+        //add document to collection categories
+        await addDoc(collection(db, 'categories'), {
+            name: 'bus',
+            text: "",
+            user: currentUser.uid,
+            created: serverTimestamp(),
+            //id: categoryUuid
+        }) 
+    }
 
-
-
-
-
+    const handleSubmitCat = async (e) => {
+        e.preventDefault()      
+        addCategory()
+    }
 
     return (
         <>
@@ -111,15 +113,24 @@ const Moodboard = () => {
                                     </div>               
                                 ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
                                     <>
-                                        <p>Den här kategorin har inga bilder. Lägg till bilder eller radera kategorin</p>
-                                        <button type="submit" onClick= {handleSubmit}>RADERA KATEGORI</button>
+                                        <p>Den här kategorin har inga bilder. 
+                                            du kan radera kategorin eller lägga till en tom kategori. </p>
+                                      
+                                            <p>Ladda annars upp bilder och välj en ny eller befintlig kategori direkt genom att trycka på + tecknet till höger</p>
+                                           
+                                        <div>
+                                        <button type="submit" onClick= {handleDeleteCat}>RADERA KATEGORI</button>
+                                        <button type="submit" onClick= {handleSubmitCat}>LÄGG TILL KATEGORI</button>
+                                        </div>
+                           
                                     </>
                                 ) : !showUploadForm && imagesByCategoryQuery.data && (
+                             <>
                                     <MasonryGrid 
                                     setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}
                                     data={imagesByCategoryQuery.data}
                                     />
-                            
+                                    </>
                                 )
                             }  
 
