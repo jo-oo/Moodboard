@@ -26,12 +26,12 @@ const Moodboard = () => {
     console.log("Moodboard categoriesQuery: ", categoriesQuery)
 
     if (categoriesQuery.isError) {
-        console.log("Error query", categoriesQuery.error.message) 
+        console.log("Error query for categories", categoriesQuery.error.message) 
     }
     if (imagesByCategoryQuery.isError) {
-        console.log("Error query", imagesByCategoryQuery.error.message)  
+        console.log("Error query for images", imagesByCategoryQuery.error.message)  
     }
-    
+   
     //Get the current category
     const { category  } = useAuthContext()
  
@@ -65,11 +65,18 @@ const Moodboard = () => {
                                 />
                             }
 
+                            {categoriesQuery.isError && (
+                                <p>An error occurred rendering categories: {categoriesQuery.error.message}</p>
+                            )}
+
+                            {imagesByCategoryQuery.isError && (
+                                <p>An error occurred rendering images: {imagesByCategoryQuery.error.message}</p>
+                            )}
+
                             { imagesByCategoryQuery.isLoading && (
                                 <p>loading</p>
                             )}
                         
-    
                             {  !imagesByCategoryQuery.isLoading && !categoryExists ? (
                                     <div>
                                         <p>Det finns inte någon sådan kategori</p> 
