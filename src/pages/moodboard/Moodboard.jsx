@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FiPlus } from 'react-icons/fi';
 import { doc, collection, deleteDoc, addDoc, serverTimestamp } from "firebase/firestore";
 import { db, storage } from '../../firebase/config';
+import { useLocation } from 'react-router-dom';
 
 import "./moodboard.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -33,7 +34,12 @@ const Moodboard = () => {
     if (imagesByCategoryQuery.isError) {
         console.log("Error query for images", imagesByCategoryQuery.error.message)  
     }
-   
+    //trying to check if location is home / only to be able to render a differnet message on screen than "det finns inte någon sådan kategori"
+    // let location = useLocation();
+    // let locationHome = location.pathname === '/'
+
+    // console.log("location ", location.pathname)
+
     //Get the current category
     const { category, currentUser  } = useAuthContext()
     //find current category amongst users categories
