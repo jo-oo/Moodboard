@@ -15,11 +15,6 @@ const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
         addCat.addEmptyCategory(inputRef.current.value)
     }
 
-	const handleReset = () => {
-		setImage(null)
-		setMessage(null)
-	}
-
   
 	return (
 		<>
@@ -39,7 +34,7 @@ const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
                     </div>
 
 				
-                    <form onSubmit={handleSubmitCat} onReset={handleReset}>
+                    <form onSubmit={handleSubmitCat}>
 
                         <div className="mt-4">
                             <label
@@ -72,6 +67,18 @@ const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
                             </div> */}
                         </div>
                     </form>
+                    {addCat.isError && 
+                        <div className='flex justify-center'>
+                            <p className="text-lg font-bold text-red-600">{addCat.error} :-(</p>
+                        </div>  
+                    }
+
+                    {addCat.isSuccess && 
+                        <div className='flex justify-center'>
+                            <p className="text-lg font-bold text-blue-600">{addCat.message} :-)</p>
+                        </div>  
+                    }
+                    
 
                 </div>
             

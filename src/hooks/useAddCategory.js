@@ -8,18 +8,20 @@ const useAddCategory = () => {
 	const [error, setError] = useState(null)
 	const [isError, setIsError] = useState(null)
 	const [isSuccess, setIsSuccess] = useState(null)
-
+	const [message, setMessage] = useState(null)
+	
 	//fetching user from AuthContext
 	const { currentUser } = useAuthContext()
 
 	//fetching the categories of that user
 	const categoriesQuery = useViewCategories({ fetchOnlyCurrentUser: true })
 
-	const addEmptyCategory = async (categoryRef) => {
-			// reset internal state
-			setError(null)
-			setIsError(null)
-			setIsSuccess(null)
+	const addEmptyCategory = async (categoryRef) => {	
+		// reset internal state
+		setError(null)
+		setIsError(null)
+		setIsSuccess(null)
+		setMessage(null)
 		
 		// map returns a list of the names and includes checks if the category exists there
 		const categoryExists = categoriesQuery.data.map(function(c) {
@@ -35,15 +37,21 @@ const useAddCategory = () => {
 				user: currentUser.uid,
 				created: serverTimestamp(),
 			})
+			setIsSuccess(true)
+			setMessage("Kategorin tillagd!")
+		} else if (categoryExists){
+			setError("Kategorin finns redan")
+			setIsError(true)
 		}
 
 	}
 
 	return {
-		addEmptyCategory,
-		error,
 		isError,
+		error,
 		isSuccess,
+		message,
+		addEmptyCategory,
 	}
 }
 

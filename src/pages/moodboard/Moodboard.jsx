@@ -124,7 +124,6 @@ const Moodboard = () => {
                                     {showAddCatForm &&
                                        < AddEmptyCategoryForm 
                                         closeAddCatForm={closeAddCatForm}
-                                        handleSubmitCat={handleSubmitCat}
                                         showAddCatForm={showAddCatForm}
                                        />
                                     }
