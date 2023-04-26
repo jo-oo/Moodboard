@@ -12,11 +12,13 @@ import Modal from "../../components/images/Modal";
 import useViewCategoryImagesByUser from "../../hooks/useViewCategoryImagesByUser";
 import { useAuthContext } from '../../contexts/AuthContext'
 import useViewCategories from "../../hooks/useViewCategories";
+import AddEmptyCategoryForm from "../../components/categories/addEmptyCategoryForm";
 
 const Moodboard = () => {
     const [selectedImageUrl, setSelectedImageUrl] = useState(null)
     const [selectedImageId, setSelectedImageId] = useState(null)
     const [showUploadForm, setShowUploadForm] = useState(null)
+    const [showAddCatForm, setShowAddCatForm] = useState(false)
 
     // Get users images in category
     const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
@@ -44,6 +46,14 @@ const Moodboard = () => {
         setShowUploadForm(true);
     };
 
+    const openAddCatForm = () => {
+        setShowAddCatForm(true);
+    };
+
+    const closeAddCatForm = () => {
+        setShowAddCatForm(false);
+    };
+
 
     //updates document in collection "categories"
     const deleteCategory = async () => {
@@ -58,21 +68,7 @@ const Moodboard = () => {
         deleteCategory()
     }
 
-    const addCategory = async () => {
-        //add document to collection categories
-        await addDoc(collection(db, 'categories'), {
-            name: 'bus',
-            text: "",
-            user: currentUser.uid,
-            created: serverTimestamp(),
-            //id: categoryUuid
-        }) 
-    }
-
-    const handleSubmitCat = async (e) => {
-        e.preventDefault()      
-        addCategory()
-    }
+   
 
     return (
         <>
@@ -117,11 +113,21 @@ const Moodboard = () => {
                                             du kan radera kategorin eller lägga till en tom kategori. </p>
                                       
                                             <p>Ladda annars upp bilder och välj en ny eller befintlig kategori direkt genom att trycka på + tecknet till höger</p>
-                                           
+
                                         <div>
-                                        <button type="submit" onClick= {handleDeleteCat}>RADERA KATEGORI</button>
-                                        <button type="submit" onClick= {handleSubmitCat}>LÄGG TILL KATEGORI</button>
+                                            <button type="submit" onClick= {handleDeleteCat}>RADERA KATEGORI</button>
+                                            {/* <button type="submit" onClick= {handleSubmitCat}>LÄGG TILL KATEGORI</button> */}
+                                            <button type="submit" onClick= {openAddCatForm}>LÄGG TILL KATEGORI</button>
+
                                         </div>
+
+                                    {showAddCatForm &&
+                                       < AddEmptyCategoryForm 
+                                        closeAddCatForm={closeAddCatForm}
+                                        handleSubmitCat={handleSubmitCat}
+                                        showAddCatForm={showAddCatForm}
+                                       />
+                                    }
                            
                                     </>
                                 ) : !showUploadForm && imagesByCategoryQuery.data && (
