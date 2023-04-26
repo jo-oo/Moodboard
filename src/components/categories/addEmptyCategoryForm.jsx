@@ -1,6 +1,6 @@
 import logo from '../../assets/logos/logo.svg'
 import Button from '../../components/user/Button'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import useAddCategory from '../../hooks/useAddCategory';
 
 const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
@@ -14,6 +14,11 @@ const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
         e.preventDefault()  
         addCat.addEmptyCategory(inputRef.current.value)
     }
+
+    //This does not work but should be correct (peError: setShowAddCatForm is not a function)
+    //  const closeAddCatForm = () => {
+    //     setShowAddCatForm(false);
+    // };
 
   
 	return (

@@ -18,7 +18,7 @@ const Moodboard = () => {
     const [selectedImageUrl, setSelectedImageUrl] = useState(null)
     const [selectedImageId, setSelectedImageId] = useState(null)
     const [showUploadForm, setShowUploadForm] = useState(null)
-    const [showAddCatForm, setShowAddCatForm] = useState(false)
+    const [showAddCatForm, setShowAddCatForm] = useState(null)
 
     // Get users images in category
     const imagesByCategoryQuery = useViewCategoryImagesByUser({ fetchOnlyCurrentUser: true})
@@ -41,7 +41,6 @@ const Moodboard = () => {
     //check if current category amongst users categories exists
     let categoryExists = categoriesQuery.data && categoriesQuery.data.filter(c => c.name == category).length >= 1;
 
-
     const openUploadForm = () => {
         setShowUploadForm(true);
     };
@@ -49,11 +48,6 @@ const Moodboard = () => {
     const openAddCatForm = () => {
         setShowAddCatForm(true);
     };
-
-    const closeAddCatForm = () => {
-        setShowAddCatForm(false);
-    };
-
 
     //updates document in collection "categories"
     const deleteCategory = async () => {
@@ -69,7 +63,6 @@ const Moodboard = () => {
     }
 
    
-
     return (
         <>
             {/* Container */}
@@ -123,8 +116,8 @@ const Moodboard = () => {
 
                                     {showAddCatForm &&
                                        < AddEmptyCategoryForm 
-                                        closeAddCatForm={closeAddCatForm}
-                                        showAddCatForm={showAddCatForm}
+                                            showAddCatForm={showAddCatForm}
+                                            setShowAddCatForm={setShowAddCatForm}
                                        />
                                     }
                            
