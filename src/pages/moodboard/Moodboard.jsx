@@ -102,9 +102,9 @@ const Moodboard = () => {
                                 <p>loading</p>
                             )}
                         
-                            {  !imagesByCategoryQuery.isLoading && !categoryExists ? (
+                            {  !imagesByCategoryQuery.isLoading && !categoryExists && !showUploadForm ? (
                                     <div>
-                                        <p>Det finns inte någon sådan kategori</p> 
+                                        <p>Här finns det ingen kategori. Gå till dina kategorier i vänstermenyn eller lägg till en bild i en kategori via att klicka på + till höger.</p> 
                                     </div>               
                                 ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
                                     <>

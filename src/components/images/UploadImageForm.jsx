@@ -148,7 +148,7 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
                     
                     {uploadImage.isSuccess && 
                         <div className='flex justify-center'>
-                            <p className="text-lg font-bold text-blue-600">Image uploaded! :-)</p>
+                            <p className="text-lg font-bold text-blue-600">Bild uppladdad! Gå till kategorin och titta på bilden! Den finns där i din Moodboard :-)</p>
                         </div>  
                     }
                 </div>
