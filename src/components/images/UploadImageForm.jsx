@@ -1,9 +1,9 @@
 import logo from '../../assets/logos/logo.svg'
 import Button from '../../components/user/Button'
-import Alert from '../../components/general/Alert'
 import React, { useState, useRef } from 'react'
 import Progressbar from './Progressbar'
 import useUploadImage from '../../hooks/useUploadImage'
+import { useAuthContext } from '../../contexts/AuthContext'
 
 const UploadImage = ({showUploadForm, setShowUploadForm}) => {
 	const [image, setImage] = useState(null)
@@ -11,6 +11,9 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
     const [error, setError] = useState(null)
 	const uploadImage = useUploadImage()
     const inputRef = useRef()
+
+    //Get the current category
+    const { category  } = useAuthContext()
 
     const closeUploadForm = () => {
         setShowUploadForm(false)
@@ -111,6 +114,8 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
                             <div className="flex flex-col items-start">
                                 <input
                                     type="text"
+                                    placeholder={category}
+                                    defaultValue={category}
                                     ref={inputRef} 
                                     required= "A category must be submitted"
                                     name="category"
