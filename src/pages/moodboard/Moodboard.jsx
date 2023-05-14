@@ -112,10 +112,8 @@ const Moodboard = () => {
                                     ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
                                         <>
                                             <p className="mb-2">Den här kategorin har inga bilder. 
-                                                Du kan radera kategorin eller lägga till en tom kategori. </p>
-                                        
-                                                <p>Ladda annars upp bilder och välj en ny eller befintlig kategori direkt genom att trycka på + tecknet till höger</p>
-
+                                                Ladda upp bilder till kategorin genom att trycka på + tecknet till höger</p>
+                                                <p>Du kan annars radera kategorin eller lägga till ny kategori</p>
                                             <div>
                                                 <button className="mt-5" type="submit" onClick= {handleDeleteCat}>RADERA KATEGORI</button>
                                                 {/* <button type="submit" onClick= {handleSubmitCat}>LÄGG TILL KATEGORI</button> */}
@@ -143,9 +141,6 @@ const Moodboard = () => {
                                 </div>
 
                             </div>
-                   
-                        
-            
 
                             {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
                             {selectedImageUrl && 
