@@ -44,9 +44,9 @@ const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
                         <div className="mt-4">
                             <label
                                 htmlFor="category"
-                                className="block text-sm font-medium text-gray-700"
+                                className="block text-sm font-medium text-griesay-700"
                             >
-                                Choose an existing category, or add a new
+                                Add a new category
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
