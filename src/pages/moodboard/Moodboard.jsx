@@ -90,53 +90,62 @@ const Moodboard = () => {
                                 />
                             }
 
-                            {categoriesQuery.isError && (
-                                <p>An error occurred rendering categories: {categoriesQuery.error.message}</p>
-                            )}
+                            <div className="flex flex-col items-center sm:justify-center pl-4 xs:pl-8 xs:pr-8 mt-10">
+                                {categoriesQuery.isError && (
+                                    <p>An error occurred rendering categories: {categoriesQuery.error.message}</p>
+                                )}
 
-                            {imagesByCategoryQuery.isError && (
-                                <p>An error occurred rendering images: {imagesByCategoryQuery.error.message}</p>
-                            )}
+                                {imagesByCategoryQuery.isError && (
+                                    <p>An error occurred rendering images: {imagesByCategoryQuery.error.message}</p>
+                                )}
 
-                            { imagesByCategoryQuery.isLoading && (
-                                <p>loading</p>
-                            )}
-                        
-                            {  !imagesByCategoryQuery.isLoading && !categoryExists && !showUploadForm ? (
-                                    <div>
-                                        <p>Här finns det ingen kategori. Gå till dina kategorier i vänstermenyn eller lägg till en bild i en kategori via att klicka på + till höger.</p> 
-                                    </div>               
-                                ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
+                                { imagesByCategoryQuery.isLoading && (
+                                    <p>loading...</p>
+                                )}
+
+                                <div className="m4">
+
+                                    { !imagesByCategoryQuery.isLoading && !categoryExists && !showUploadForm ? (
+                                        <div className="m-5">
+                                            <p>Här finns det ingen kategori. Gå till dina kategorier i vänstermenyn eller lägg till en bild i en kategori via att klicka på + till höger.</p> 
+                                        </div>               
+                                    ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
+                                        <>
+                                            <p className="mb-2">Den här kategorin har inga bilder. 
+                                                Du kan radera kategorin eller lägga till en tom kategori. </p>
+                                        
+                                                <p>Ladda annars upp bilder och välj en ny eller befintlig kategori direkt genom att trycka på + tecknet till höger</p>
+
+                                            <div>
+                                                <button className="mt-5" type="submit" onClick= {handleDeleteCat}>RADERA KATEGORI</button>
+                                                {/* <button type="submit" onClick= {handleSubmitCat}>LÄGG TILL KATEGORI</button> */}
+                                                <button type="submit" onClick= {openAddCatForm}>LÄGG TILL KATEGORI</button>
+
+                                            </div>
+
+                                        {showAddCatForm &&
+                                        < AddEmptyCategoryForm 
+                                                showAddCatForm={showAddCatForm}
+                                                setShowAddCatForm={setShowAddCatForm}
+                                        />
+                                        }
+                            
+                                        </>
+                                        ) : !showUploadForm && imagesByCategoryQuery.data && (
                                     <>
-                                        <p>Den här kategorin har inga bilder. 
-                                            du kan radera kategorin eller lägga till en tom kategori. </p>
-                                      
-                                            <p>Ladda annars upp bilder och välj en ny eller befintlig kategori direkt genom att trycka på + tecknet till höger</p>
+                                            <MasonryGrid 
+                                            setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}
+                                            data={imagesByCategoryQuery.data}
+                                            />
+                                            </>
+                                        )
+                                    }  
+                                </div>
 
-                                        <div>
-                                            <button type="submit" onClick= {handleDeleteCat}>RADERA KATEGORI</button>
-                                            {/* <button type="submit" onClick= {handleSubmitCat}>LÄGG TILL KATEGORI</button> */}
-                                            <button type="submit" onClick= {openAddCatForm}>LÄGG TILL KATEGORI</button>
-
-                                        </div>
-
-                                    {showAddCatForm &&
-                                       < AddEmptyCategoryForm 
-                                            showAddCatForm={showAddCatForm}
-                                            setShowAddCatForm={setShowAddCatForm}
-                                       />
-                                    }
-                           
-                                    </>
-                                ) : !showUploadForm && imagesByCategoryQuery.data && (
-                             <>
-                                    <MasonryGrid 
-                                    setSelectedImageUrl={setSelectedImageUrl} setSelectedImageId={setSelectedImageId}
-                                    data={imagesByCategoryQuery.data}
-                                    />
-                                    </>
-                                )
-                            }  
+                            </div>
+                   
+                        
+            
 
                             {/* renders Modal only of selectedImage is true. So opnly when a user has clicked an image */}
                             {selectedImageUrl && 
@@ -145,7 +154,7 @@ const Moodboard = () => {
                                 />
                             }
                         </div>
-                        <div className="Right">
+                        <div className="Right mt-4">
                             <div>
                                 <FiPlus 
                                     size={45}
