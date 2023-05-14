@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom'
 import logo from '../../assets/logos/logo.svg'
 import Cards from './Cards';
 import UserProfile from '../user/UserProfile';
 
 const Sidebar = ( { categoriesQuery} ) => {
+    const navigate = useNavigate()
 
     return (
         <>
@@ -15,7 +17,10 @@ const Sidebar = ( { categoriesQuery} ) => {
                     {/* Logo */}
                     <div className="mb-5 px-5 md:px-9">
                         <div>
-                            <img src={logo} className="" alt="Sidebar Logo"/>
+                            <img src={logo} 
+                            className="cursor-pointer" 
+                            alt="Sidebar Logo"
+                            onClick={() => navigate(`/`)}/>
                         </div>
                     </div>
                 <div className="mb-4 text-yellow-950 font-bold text-center md:text-[23px] text-[19px] break-words">
