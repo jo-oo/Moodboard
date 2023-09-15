@@ -15,7 +15,7 @@ const Notes = () => {
                 <div className="max-h-[30rem]
                     p-2 md:p-3 bg-white
               border-[0.5px]  border-[#CFC9C1] rounded-sm break-words overflow-y-scroll overflow-x-hidden leading-4 md:leading-5 row-span-6">
-                    Här kan du som användare, i framtiden.. skriva lite anteckningar till din kategori, alltså till den moddboard du är inne på :-)
+                    In the future, you will be able to write notes to your moodboard here.
                 </div>
                 <UserProfile/>
             </div>
