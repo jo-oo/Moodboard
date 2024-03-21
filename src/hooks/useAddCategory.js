@@ -38,9 +38,9 @@ const useAddCategory = () => {
 				created: serverTimestamp(),
 			})
 			setIsSuccess(true)
-			setMessage("Kategorin tillagd!")
+			setMessage("Category added!")
 		} else if (categoryExists){
-			setError("Kategorin finns redan")
+			setError("Category already exists")
 			setIsError(true)
 		}
 

@@ -109,7 +109,7 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
                                 htmlFor="category"
                                 className="block text-sm font-medium text-gray-700"
                             >
-                                Choose an existing category, or add a new
+                                Choose an existing Moodboard, or add a new
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
@@ -153,7 +153,7 @@ const UploadImage = ({showUploadForm, setShowUploadForm}) => {
                     
                     {uploadImage.isSuccess && 
                         <div className='flex justify-center'>
-                            <p className="text-lg font-bold text-blue-600">Bild uppladdad! Gå till kategorin och titta på bilden! Den finns där i din Moodboard :-)</p>
+                            <p className="text-lg font-bold text-blue-600">Image uploaded! Go to the Moodboard to watch your image! :-)</p>
                         </div>  
                     }
                 </div>

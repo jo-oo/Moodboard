@@ -107,17 +107,17 @@ const Moodboard = () => {
 
                                     { !imagesByCategoryQuery.isLoading && !categoryExists && !showUploadForm ? (
                                         <div className="m-5">
-                                            <p>Här finns det ingen kategori. Gå till dina kategorier i vänstermenyn eller lägg till en bild i en kategori via att klicka på + till höger.</p> 
+                                            <p>No Moodboard here. Go to your Moodboards in the left menu or add an image to a Moodboard by clicking the plus-sign here to the right</p> 
                                         </div>               
                                     ) : !showUploadForm && imagesByCategoryQuery.data && imagesByCategoryQuery.data.length == 0 ? (
                                         <>
-                                            <p className="mb-2">Den här kategorin har inga bilder. 
-                                                Ladda upp bilder till kategorin genom att trycka på + tecknet till höger</p>
-                                                <p>Du kan annars radera kategorin eller lägga till ny kategori</p>
+                                            <p className="mb-2">This moodboard has no existing images.
+                                            Upload images to the Moodboard by clicking the plus-sign here to the right,</p>
+                                                <p>Otherwise: delete the Moodboard or add a new one.</p>
                                             <div>
-                                                <button className="mt-5" type="submit" onClick= {handleDeleteCat}>RADERA KATEGORI</button>
+                                                <button className="mt-5" type="submit" onClick= {handleDeleteCat}>DELETE MOODBOARD</button>
                                                 {/* <button type="submit" onClick= {handleSubmitCat}>LÄGG TILL KATEGORI</button> */}
-                                                <button type="submit" onClick= {openAddCatForm}>LÄGG TILL KATEGORI</button>
+                                                <button type="submit" onClick= {openAddCatForm}>ADD MOODBOARD</button>
 
                                             </div>
 

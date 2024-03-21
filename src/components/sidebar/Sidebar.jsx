@@ -24,7 +24,7 @@ const Sidebar = ( { categoriesQuery} ) => {
                         </div>
                     </div>
                 <div className="mb-4 text-yellow-950 font-bold text-center md:text-[23px] text-[19px] break-words">
-                    <p>Categories</p>
+                    <p>Moodboards</p>
                 </div>
                     {/* Cards*/}
                     <Cards 

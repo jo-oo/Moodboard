@@ -34,8 +34,8 @@ const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
                     </div>
 
                     <div className="InfoText flex flex-col items-center justify-center mt-1 mb-7">
-                        <h3 className="text-2xl font-semibold mt-2">Add Category</h3>
-                        <p className='text-base'>Choose new category</p>
+                        <h3 className="text-2xl font-semibold mt-2">Add Moodboard</h3>
+                        <p className='text-base'>Choose new Moodboard</p>
                     </div>
 
 				
@@ -46,13 +46,13 @@ const AddEmptyCategoryForm = ( showAddCatForm, setShowAddCatForm, ) => {
                                 htmlFor="category"
                                 className="block text-sm font-medium text-griesay-700"
                             >
-                                Add a new category
+                                Add a new Moodboard
                             </label>
                             <div className="flex flex-col items-start">
                                 <input
                                     type="text"
                                     ref={inputRef} 
-                                    required= "A category must be submitted"
+                                    required= "A Moodboard name must be submitted"
                                     name="category"
                                     className="nameInputField block w-full mt-1 p-1.5 border-[#9EB8EB] border-opacity-30  rounded-md 
                                     border-2 

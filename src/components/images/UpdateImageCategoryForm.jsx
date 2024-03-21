@@ -43,7 +43,7 @@ const UpdateImageCategoryForm = ( {  selectedImageId, showUpdateImageCategoryFor
             md:absolute md:bottom-80 md:left-[30%]">
 
                     <div className="InfoText flex flex-col items-center justify-center mt-1 mb-1">
-                        <p className='text-base'>Please choose category</p>
+                        <p className='text-base'>Please choose Moodboard</p>
                     </div> 
 
                     {/* UPDATE FORM */}
